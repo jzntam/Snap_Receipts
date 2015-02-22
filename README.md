@@ -1,5 +1,8 @@
 ## README ##
 
+Initial Setup of the project...
+
+
 ```shell
 rails new snap_receipts -d postgresql -T
 ```
