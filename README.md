@@ -82,8 +82,16 @@ Nest the resources in the routes.rb
   end
 ```
 
+Create CRUD for Report
+```
+Instantiate instance variable and define CRUD actions in the Reports Controller
+```
 
-
+Implement Bootstrap Gem
+```html
+Follow the documentation
+https://github.com/twbs/bootstrap-sass
+```
 
 
 

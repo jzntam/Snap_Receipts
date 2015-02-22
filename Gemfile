@@ -22,6 +22,8 @@ gem 'simple_form'
 gem "font-awesome-rails"
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
+gem 'bootstrap-sass', '~> 3.3.3'
+
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
