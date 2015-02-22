@@ -93,7 +93,35 @@ Follow the documentation
 https://github.com/twbs/bootstrap-sass
 ```
 
+Added font-awesome Gem
+```css
+https://github.com/bokmann/font-awesome-rails
 
+gem "font-awesome-rails"
+
+@import "font-awesome";
+```
+
+Create CRUD for Receipts
+```
+Instantiate instance variable and define CRUD actions in the Reports Controller
+```
+
+Install CarrierWave
+```ruby
+gem 'carrierwave'
+```
+```shell
+rails generate uploader Image
+
+rails g migration add_image_to_receipts image:string
+
+rake db:migrate
+```
+
+```ruby
+Receipt.rb
+  mount_uploader :image, ImageUploader
 
 
 

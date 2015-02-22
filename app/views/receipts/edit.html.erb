@@ -1,2 +1,16 @@
 <h1>Receipts#edit</h1>
 <p>Find me in app/views/receipts/edit.html.erb</p>
+
+<%= form_for [@report, @receipt] do |f| %>
+  <%= f.label :business_name %><br>
+  <%= f.text_field :business_name %><br>
+  <%= f.label :sub_total %><br>
+  <%= f.text_field :sub_total %><br>
+  <%= f.label :tax_total %><br>
+  <%= f.text_field :tax_total %>
+  <%= f.select :tax_type, [['None', 'None'], ['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST']] %><br>
+  <%= f.label :total %><br>
+  <%= f.text_field :total %><br>
+  <%= f.submit %>
+<% end %>
+

@@ -5,7 +5,7 @@
 <hr>
 
 <% @reports.each do |report| %>
-  <%= report.title %>
+  <%= link_to report.title, report_path(report) %>
   <%= report.description %>
   <%= link_to "edit", edit_report_path(report) %>
   <%= link_to "Delete", report_path(report), method: :delete %>
