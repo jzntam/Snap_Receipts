@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222015828) do
+ActiveRecord::Schema.define(version: 20150222033601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "receipts", force: :cascade do |t|
+    t.string   "business_name"
+    t.decimal  "sub_total",     precision: 8, scale: 2
+    t.decimal  "tax_total",     precision: 8, scale: 2
+    t.decimal  "total",         precision: 8, scale: 2
+    t.string   "tax_type"
+    t.integer  "report_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "receipts", ["report_id"], name: "index_receipts_on_report_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.string   "title"
@@ -23,4 +36,5 @@ ActiveRecord::Schema.define(version: 20150222015828) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "receipts", "reports"
 end
