@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
+  get 'reports/index'
+
+  get 'reports/new'
+
+  get 'reports/create'
+
+  get 'reports/show'
+
+  get 'reports/edit'
+
+  get 'reports/update'
+
+  get 'reports/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
