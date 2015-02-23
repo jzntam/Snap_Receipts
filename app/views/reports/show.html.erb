@@ -8,17 +8,61 @@
     <%= link_to "ADD RECEIPT", new_report_receipt_path(@report) %>
   </div>
 
+<div>
+<%= link_to "somethin", "#", data: {toggle: "modal", target: "#myModal18"} %>
+</div>
 
   <% @report.receipts.each do |receipt| %>
-    <%= link_to report_receipt_path(@report, receipt) do %>
-      <div class="receipt-box dev-test">
+    <%#= link_to report_receipt_path(@report, receipt) do %>
+    <%# end %>
+    <div class="receipt-box dev-test">
+    <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal#{receipt.id}"} %>
+    </div>
+
+<div class="modal fade" id="myModal<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+
         <p>Payee: <%= receipt.business_name %></p>
         <p><%= standard_date(receipt.created_at) %></p>
         <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
         <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
         <p>Total: <%= number_to_currency(receipt.total) %></p>
         <p><%= image_tag(receipt.image_url(:thumb)) if receipt.image? %></p>
+
+
       </div>
-    <% end %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <% end %>
 </div>
+
+
+<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button> -->
+
+
+
+
+
+
+
+
+
+
+
+
