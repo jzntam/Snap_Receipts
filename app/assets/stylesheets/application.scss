@@ -24,6 +24,17 @@ $font-family-sans-serif: 'Lato', sans-serif;
 @import "font-awesome";
 
 
+.dev-test {
+  border: 1px solid orange;
+}
+
+.receipt-box {
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  background-color: rgba(253,123,17,0.1);
+}
+
 
 
 

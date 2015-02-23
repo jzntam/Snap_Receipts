@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>SnapReceipts</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>SnapReceipts</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
   <body>
 
     <!-- Navigation -->
@@ -17,10 +17,16 @@
           <%= link_to image_tag('logo.png'), root_path %>
         </li>
         <li>
+          <%= link_to "MY REPORTS", reports_path %>
+        </li>
+        <li>
           <%= link_to "NEW REPORT!", new_report_path %>
         </li>
         <li>
           <%#= link_to "NEW RECEIPT", report_receipts_path  %>
+        </li>
+        <li>
+          <%= link_to "something", "#" %>
         </li>
         <li>
           <%= link_to "something", "#" %>
@@ -36,33 +42,32 @@
 
 
     <script>
-    // Closes the sidebar menu
+    // Sidebar Action
     $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
+      e.preventDefault();
+      $("#sidebar-wrapper").toggleClass("active");
     });
 
-    // Opens the sidebar menu
     $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
+      e.preventDefault();
+      $("#sidebar-wrapper").toggleClass("active");
     });
 
-    // Scrolls to the selected menu item on the page
+    // Scroll Animation
     $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+      });
     });
     </script>
   </body>

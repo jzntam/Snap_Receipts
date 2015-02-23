@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.all.order("created_at DESC")
   end
 
   def new
@@ -18,6 +18,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    @report.receipts.order("created_at DESC")
   end
 
   def edit

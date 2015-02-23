@@ -1,5 +1,4 @@
 class Report < ActiveRecord::Base
   validates :title, presence: true
-
-  has_many :receipts
+  has_many :receipts, -> { order "created_at DESC" }
 end

@@ -16,7 +16,7 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.new receipt_params
     @receipt.report = @report
     if @receipt.save
-      redirect_to report_receipts_path
+      redirect_to @report
     else
       render :new
     end

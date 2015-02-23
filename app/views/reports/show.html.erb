@@ -1,8 +1,24 @@
-<h1>Reports#show</h1>
-<p>Find me in app/views/reports/show.html.erb</p>
+<div class="container dev-test">
+  <h1>Reports#show</h1>
+  <p>Find me in app/views/reports/show.html.erb</p>
+
+  <div>
+    <%= @report.title %>
+    <%= @report.description %>
+    <%= link_to "ADD RECEIPT", new_report_receipt_path(@report) %>
+  </div>
 
 
-<%= @report.title %>
-<%= @report.description %>
-
-<%= link_to "ADD RECEIPT", new_report_receipt_path(@report)  %>
+  <% @report.receipts.each do |receipt| %>
+    <%= link_to report_receipt_path(@report, receipt) do %>
+      <div class="receipt-box dev-test">
+        <p>Payee: <%= receipt.business_name %></p>
+        <p><%= standard_date(receipt.created_at) %></p>
+        <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
+        <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
+        <p>Total: <%= number_to_currency(receipt.total) %></p>
+        <p><%= image_tag(receipt.image_url(:thumb)) if receipt.image? %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
