@@ -18,7 +18,6 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    @report.receipts.order("created_at DESC")
   end
 
   def edit

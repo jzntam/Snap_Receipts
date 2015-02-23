@@ -8,61 +8,39 @@
     <%= link_to "ADD RECEIPT", new_report_receipt_path(@report) %>
   </div>
 
-<div>
-<%= link_to "somethin", "#", data: {toggle: "modal", target: "#myModal18"} %>
-</div>
 
   <% @report.receipts.each do |receipt| %>
-    <%#= link_to report_receipt_path(@report, receipt) do %>
-    <%# end %>
     <div class="receipt-box dev-test">
-    <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal#{receipt.id}"} %>
+    <%= link_to "EDIT this REceipt", edit_report_receipt_path(@report, receipt) %>
+    <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
     </div>
 
-<div class="modal fade" id="myModal<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <a class="close btn btn-light btn-xs pull-right toggle" data-dismiss="modal" aria-label="Close"><i aria-hidden="true" class="fa fa-times fa"></i></a>
+            <h4 class="modal-title" id="myModalLabel">Receipt from <%= receipt.business_name %> on <%= standard_date(receipt.created_at) %></h4>
+          </div>
+          <div class="modal-body container-fluid dev-test">
+            <center>
+              <div class="modal-columns">
+                <%= image_tag(receipt.image_url(:fitted)) if receipt.image? %></p> 
+              </div>
+              <div class="modal-columns">
+                <p>Business Name: <%= receipt.business_name %></p>
+                <p><%= standard_date(receipt.created_at) %></p>
+                <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
+                <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
+                <p>Total: <%= number_to_currency(receipt.total) %></p>
+                <p><%#= render "receipts/form", receipt: receipt %></p>
+                <p><%= render partial: "receipts/form", :locals => { :receipt => receipt } %></p>
+              </div>
+            </center>
+          </div> <!-- modal-dialog -->
+        </div> <!-- modal-content -->
+      </div> <!-- modal-dialog -->
+    </div> <!-- modal -->
+  <% end %> <!-- do loop -->
 
-
-        <p>Payee: <%= receipt.business_name %></p>
-        <p><%= standard_date(receipt.created_at) %></p>
-        <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
-        <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
-        <p>Total: <%= number_to_currency(receipt.total) %></p>
-        <p><%= image_tag(receipt.image_url(:thumb)) if receipt.image? %></p>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <% end %>
-</div>
-
-
-<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button> -->
-
-
-
-
-
-
-
-
-
-
-
-
+</div> <!-- container -->

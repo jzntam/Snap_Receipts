@@ -122,7 +122,7 @@ rake db:migrate
 ```ruby
 Receipt.rb
   mount_uploader :image, ImageUploader
-
+```
 
 
 

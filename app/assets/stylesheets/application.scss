@@ -23,6 +23,35 @@ $font-family-sans-serif: 'Lato', sans-serif;
 @import "bootstrap";
 @import "font-awesome";
 
+body .modal-dialog {
+  /* new custom width */
+  width: 800px;
+  /* must be half of the width, minus scrollbar on the left (30px) */
+  .modal-content {
+    border-radius: 0;
+  }
+  .btn {
+    border-radius: 25px;
+  }
+  .btn-xs {
+    background-color: white;
+    color: #535353;
+    transition: all 0.4s ease 0s;
+  }
+  .btn-xs:hover {
+    background-color: #fe001a;
+    color: white;
+    transition: all 0.4s ease 0s;
+  }
+}
+
+.modal-columns {
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  border: 1px solid purple;
+}
 
 .dev-test {
   border: 1px solid orange;
