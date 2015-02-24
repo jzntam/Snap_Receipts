@@ -23,6 +23,10 @@ $font-family-sans-serif: 'Lato', sans-serif;
 @import "bootstrap";
 @import "font-awesome";
 
+body .btn {
+  border-radius: 0;
+}
+
 body .modal-dialog {
   /* new custom width */
   width: 800px;
@@ -30,9 +34,12 @@ body .modal-dialog {
   .modal-content {
     border-radius: 0;
   }
-  .btn {
-    border-radius: 25px;
+  .modal-header {
+    .btn {
+      border-radius: 25px;
+    }
   }
+
   .btn-xs {
     background-color: white;
     color: #535353;

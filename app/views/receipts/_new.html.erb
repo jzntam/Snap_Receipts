@@ -1,0 +1,32 @@
+<div class="dev-test receipt-form-toggle">
+  <%= form_for [@report, @receipt] do |f| %>
+    <%= f.label :business_name %><br>
+    <%= f.text_field :business_name %><br><br>
+    <%= f.file_field :image %><br><br>
+    <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], prompt: "Please Select Tax Type" %><br><br>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var toggled = false;
+
+    var buttonText = {
+      true: "Add New Receipt",
+      false: "Hide Form"
+    };
+
+    $(".receipt-form-toggle").hide();
+    $("#new-receipt").on('click', function(){
+      toggled = !toggled;
+
+      var text = buttonText[!toggled];
+
+      $(".receipt-form-toggle").slideToggle(toggled);
+      $("#new-receipt").html(text)
+        .toggleClass("btn-primary", !toggled)
+        .toggleClass("btn-dark", toggled);
+    });
+  }); //end of document ready
+</script>

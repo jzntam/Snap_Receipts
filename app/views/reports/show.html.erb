@@ -5,13 +5,16 @@
   <div>
     <%= @report.title %>
     <%= @report.description %>
-    <%= link_to "ADD RECEIPT", new_report_receipt_path(@report) %>
+    <%= link_to "ADD RECEIPT(REDIRECT METHOD)", new_report_receipt_path(@report) %>
+    <br>
+    <%= link_to "Add New Receipt", "#", id: "new-receipt", class: "btn btn-primary" %>
+    <%= render partial: "receipts/new", :locals => { :receipt => @receipt } %>
   </div>
 
 
   <% @report.receipts.each do |receipt| %>
     <div class="receipt-box dev-test">
-    <%= link_to "EDIT this REceipt", edit_report_receipt_path(@report, receipt) %>
+    <%#= link_to "EDIT this REceipt", edit_report_receipt_path(@report, receipt) %>
     <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
     </div>
 
@@ -33,8 +36,8 @@
                 <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
                 <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
                 <p>Total: <%= number_to_currency(receipt.total) %></p>
-                <p><%#= render "receipts/form", receipt: receipt %></p>
-                <p><%= render partial: "receipts/form", :locals => { :receipt => receipt } %></p>
+                <p><%#= render "receipts/edit", receipt: receipt %></p>
+                <p><%= render partial: "receipts/edit", :locals => { :receipt => receipt } %></p>
               </div>
             </center>
           </div> <!-- modal-dialog -->

@@ -1,10 +1,12 @@
 <h1>Receipts#new</h1>
 <p>Find me in app/views/receipts/new.html.erb</p>
 
+<h3>IF YOU SEE THIS PAGE SOMETHING IS WRONG WITH THE SITE</h3>
+
 <%= form_for [@report, @receipt] do |f| %>
   <%= f.label :business_name %><br>
   <%= f.text_field :business_name %><br><br>
   <%= f.file_field :image %><br><br>
-  <%= f.select :tax_type, [['None', 'None'], ['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST']] %><br><br>
+  <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], prompt: "Please Select Tax Type" %><br><br>
   <%= f.submit %>
 <% end %>
