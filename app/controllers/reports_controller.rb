@@ -1,9 +1,6 @@
 class ReportsController < ApplicationController
   def index
     @reports = Report.all.order("created_at DESC")
-  end
-
-  def new
     @report = Report.new
   end
 

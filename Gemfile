@@ -23,6 +23,7 @@ gem "font-awesome-rails"
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'jquery-ui-rails'
 
 gem 'hirb'
 gem 'awesome_print'

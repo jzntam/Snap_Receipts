@@ -1,0 +1,32 @@
+<div class="dev-test report-form-toggle">
+  <%= form_for @report do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br><br>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var toggled = false;
+
+    var buttonText = {
+      true: "Create a New Report",
+      false: "Hide Form"
+    };
+
+    $(".report-form-toggle").hide();
+    $("#new-report").on('click', function(){
+      toggled = !toggled;
+
+      var text = buttonText[!toggled];
+
+      $(".report-form-toggle").slideToggle(toggled);
+      $("#new-report").html(text)
+        .toggleClass("btn-primary", !toggled)
+        .toggleClass("btn-dark", toggled);
+    });
+  }); //end of document ready
+</script>

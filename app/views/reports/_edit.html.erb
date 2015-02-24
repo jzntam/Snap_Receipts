@@ -1,0 +1,32 @@
+<div class="dev-test report-edit-toggle_<%= report.id %>">
+  <%= form_for report do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br><br>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var toggled = false;
+
+    var buttonText = {
+      true: "Edit",
+      false: "Hide Form"
+    };
+
+    $(".report-edit-toggle_<%= report.id %>").hide();
+    $("#report_<%= report.id %>").on('click', function(){
+      toggled = !toggled;
+
+      var text = buttonText[!toggled];
+
+      $(".report-edit-toggle_<%= report.id %>").slideToggle(toggled);
+      $("#report_<%= report.id %>").html(text)
+        .toggleClass("btn-primary", !toggled)
+        .toggleClass("btn-dark", toggled);
+    });
+  }); //end of document ready
+</script>

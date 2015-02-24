@@ -2,16 +2,30 @@
   <h1>Reports#index</h1>
   <p>Find me in app/views/reports/index.html.erb</p>
   <p>THIS VIEW SHOWS ALL THE REPORTS/BUDGETS</p>
-  <%= link_to "NEW", new_report_path %>
 
+  <p><%= link_to "Create a New Report", "#", id: "new-report", class: "btn btn-primary" %></p>
+  <p><%= render "reports/new" %></p>
   <hr>
 
-  <% @reports.each do |report| %>
-    <div class="well">
-    <%= link_to report.title, report_path(report) %>
-    <%= report.description %>
-    <%= link_to "edit", edit_report_path(report) %>
-    <%= link_to "Delete", report_path(report), method: :delete %>
-    </div>
-  <% end %>
+  <div id="sortable">
+    <% @reports.each do |report| %>
+      <div class="well">
+      <%= link_to report.title, report_path(report) %>
+      <%= report.description %>
+      <%#= link_to "edit", edit_report_path(report) %>
+      <%= link_to "edit", "#", id: "report_#{report.id}", class: "btn btn-primary" %>
+      <%= link_to "Delete", report_path(report), method: :delete %>
+      <p><%= render "reports/edit", report: report %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<script>
+  $(function() {
+    $( "#sortable" ).sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $( "#sortable" ).disableSelection();
+  });
+  </script>
