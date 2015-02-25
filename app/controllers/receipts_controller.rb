@@ -53,7 +53,7 @@ class ReceiptsController < ApplicationController
   private
 
   def receipt_params
-    params.require(:receipt).permit(:business_name, :image, :sub_total, :tax_total, :total, :tax_type)
+    params.require(:receipt).permit(:business_name, :image, :sub_total, :tax_total, :total, :tax_type, :category, :comment)
   end
 
 end

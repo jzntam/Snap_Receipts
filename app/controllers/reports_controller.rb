@@ -31,8 +31,15 @@ class ReportsController < ApplicationController
 
   def destroy
     @report = Report.find(params[:id])
-    @report.destroy
-    redirect_to reports_path
+    respond_to do |format|
+      if @report.destroy
+        format.js {render}
+        format.html {redirect_to reports_path, notice: "Report Deleated"}
+      else
+        format.js {render}
+        format.html {redirect_to reports_path, notice: "Unable to Delete"}
+      end
+    end
   end
 
   private

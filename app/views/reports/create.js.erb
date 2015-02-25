@@ -1,0 +1,7 @@
+<% if @report.errors.any? %>
+  $(".report-form").html("<%= j render 'reports/new' %>");
+<% else %>
+  $(".reports").prepend("<%= j render partial: '/reports/report', locals: {report: @report} %>");
+  <% @report = Report.new %>
+  $(".report-form").html("<%= j render 'reports/new' %>");
+<% end %>

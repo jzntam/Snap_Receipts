@@ -29,6 +29,7 @@ gem "selectize-rails"
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
