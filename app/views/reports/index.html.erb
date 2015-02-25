@@ -7,7 +7,7 @@
   <p><%= render "reports/new" %></p>
   <hr>
 
-  <div id="sortable">
+  <div id="sortable" class="reports">
     <% @reports.each do |report| %>
       <%= render "reports/report", report: report %>
     <% end %>

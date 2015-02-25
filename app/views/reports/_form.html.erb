@@ -1,0 +1,7 @@
+<%= form_for @report, remote: true do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :description %><br>
+  <%= f.text_field :description %><br><br>
+  <%= f.submit %>
+<% end %>

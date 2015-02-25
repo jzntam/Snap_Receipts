@@ -1,11 +1,16 @@
+<% if @report.errors.any? %>
+  <ul>
+    <% @report.errors.full_messages.each do |msg| %>
+    <li><h3><%= msg %></h3></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div id="report-form" class="dev-test">
-  <%= form_for @report do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %><br><br>
-    <%= f.submit %>
-  <% end %>
+  <div class="flash-messages"></div>
+  <div class="form">
+    <%= render "form" %>
+  </div>
 </div>
 
 <script>

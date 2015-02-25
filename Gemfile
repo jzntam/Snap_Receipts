@@ -25,6 +25,7 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'jquery-ui-rails'
 gem "selectize-rails"
+gem "animate-rails"
 
 gem 'hirb'
 gem 'awesome_print'

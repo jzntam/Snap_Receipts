@@ -5,11 +5,15 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new(report_params)  
-    if @report.save
-      redirect_to reports_path, notice: "Report Created"
-    else
-      render :new
+    @report = Report.new(report_params)
+    respond_to do |format|
+      if @report.save
+        format.html {redirect_to reports_path, notice: "Report Created"}
+        format.js {render}
+      else
+        format.html {redirect_to reports_path, notice: "Report NOT Created"}
+        format.js {render}
+      end
     end
   end
 
