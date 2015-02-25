@@ -1,14 +1,16 @@
 <div class="dev-test receipt-form-toggle">
   <%= form_for [@report, @receipt] do |f| %>
     <%= f.label :business_name %><br>
-    <%= f.text_field :business_name %><br><br>
-    <%= f.file_field :image %><br><br>
+    <%= f.text_field :business_name, autofocus: true, placeholder: 'Optional' %><br><br>
+    <%= f.file_field :image %><br>
     <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], prompt: "Please Select Tax Type" %><br><br>
     <%= f.submit %>
   <% end %>
 </div>
 
+
 <script>
+  // Add new receipt form toggle. in the report/show view 
   $(document).ready(function() {
     var toggled = false;
 

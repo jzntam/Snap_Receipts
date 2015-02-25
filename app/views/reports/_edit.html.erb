@@ -1,4 +1,4 @@
-<div class="dev-test report-edit-toggle_<%= report.id %>">
+<div id="edit_report_<%= report.id %>" class="dev-test">
   <%= form_for report do |f| %>
     <%= f.label :title %><br>
     <%= f.text_field :title %><br>
@@ -9,6 +9,7 @@
 </div>
 
 <script>
+  // Edit the report form
   $(document).ready(function() {
     var toggled = false;
 
@@ -17,14 +18,14 @@
       false: "Hide Form"
     };
 
-    $(".report-edit-toggle_<%= report.id %>").hide();
+    $("#edit_report_<%= report.id %>").hide();
     $("#report_<%= report.id %>").on('click', function(){
       toggled = !toggled;
 
       var text = buttonText[!toggled];
 
-      $(".report-edit-toggle_<%= report.id %>").slideToggle(toggled);
-      $("#report_<%= report.id %>").html(text)
+      $("#edit_report_<%= report.id %>").slideToggle(toggled);
+      $(this).html(text)
         .toggleClass("btn-primary", !toggled)
         .toggleClass("btn-dark", toggled);
     });

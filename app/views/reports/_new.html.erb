@@ -1,4 +1,4 @@
-<div class="dev-test report-form-toggle">
+<div id="report-form" class="dev-test">
   <%= form_for @report do |f| %>
     <%= f.label :title %><br>
     <%= f.text_field :title %><br>
@@ -9,6 +9,7 @@
 </div>
 
 <script>
+  // Add new report form toggle
   $(document).ready(function() {
     var toggled = false;
 
@@ -17,13 +18,13 @@
       false: "Hide Form"
     };
 
-    $(".report-form-toggle").hide();
+    $("#report-form").hide();
     $("#new-report").on('click', function(){
       toggled = !toggled;
 
       var text = buttonText[!toggled];
 
-      $(".report-form-toggle").slideToggle(toggled);
+      $("#report-form").slideToggle(toggled);
       $("#new-report").html(text)
         .toggleClass("btn-primary", !toggled)
         .toggleClass("btn-dark", toggled);

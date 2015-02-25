@@ -3,7 +3,7 @@
   <p>Find me in app/views/reports/index.html.erb</p>
   <p>THIS VIEW SHOWS ALL THE REPORTS/BUDGETS</p>
 
-  <p><%= link_to "Create a New Report", "#", id: "new-report", class: "btn btn-primary" %></p>
+  <p><%= link_to "Create a New Report", "javascript:void(0)", id: "new-report", class: "btn btn-primary" %></p>
   <p><%= render "reports/new" %></p>
   <hr>
 
@@ -13,7 +13,7 @@
       <%= link_to report.title, report_path(report) %>
       <%= report.description %>
       <%#= link_to "edit", edit_report_path(report) %>
-      <%= link_to "edit", "#", id: "report_#{report.id}", class: "btn btn-primary" %>
+      <%= link_to "edit", "javascript:void(0)", id: "report_#{report.id}", class: "btn btn-primary" %>
       <%= link_to "Delete", report_path(report), method: :delete %>
       <p><%= render "reports/edit", report: report %></p>
       </div>
@@ -22,10 +22,14 @@
 </div>
 
 <script>
-  $(function() {
-    $( "#sortable" ).sortable({
-      placeholder: "ui-state-highlight"
+  // Drag and drop report sorting
+  $(document).ready(function() {
+    $(function() {
+      $( "#sortable" ).sortable({
+        placeholder: "ui-state-highlight"
+      });
+      $( "#sortable" ).disableSelection();
     });
-    $( "#sortable" ).disableSelection();
-  });
-  </script>
+  }); //end of document ready
+</script>
+
