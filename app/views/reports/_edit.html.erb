@@ -9,25 +9,5 @@
 </div>
 
 <script>
-  // Edit the report form
-  $(document).ready(function() {
-    var toggled = false;
-
-    var buttonText = {
-      true: "Edit",
-      false: "Hide Form"
-    };
-
-    $("#edit_report_<%= report.id %>").hide();
-    $("#report_<%= report.id %>").on('click', function(){
-      toggled = !toggled;
-
-      var text = buttonText[!toggled];
-
-      $("#edit_report_<%= report.id %>").slideToggle(toggled);
-      $(this).html(text)
-        .toggleClass("btn-primary", !toggled)
-        .toggleClass("btn-dark", toggled);
-    });
-  }); //end of document ready
+  reportEditor.initialize(<%= report.id %>)
 </script>
