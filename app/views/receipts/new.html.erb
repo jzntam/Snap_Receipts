@@ -1,12 +1,38 @@
+<% if @receipt && @receipt.errors.any? %>
+  <ul>
+    <% @receipt.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>Receipts#new</h1>
 <p>Find me in app/views/receipts/new.html.erb</p>
 
 <h3>IF YOU SEE THIS PAGE SOMETHING IS WRONG WITH THE SITE</h3>
 
-<%= form_for [@report, @receipt] do |f| %>
+<%= simple_form_for [@report, @receipt] do |f| %>
   <%= f.label :business_name %><br>
-  <%= f.text_field :business_name %><br><br>
-  <%= f.file_field :image %><br><br>
-  <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], prompt: "Please Select Tax Type" %><br><br>
+  <%= f.text_field :business_name, placeholder: "Enter a Business Name", class: "form-control" %><br>
+  <%= f.label :image, "Select an image to upload" %><br>
+  <div class="carrier-wave-field">
+    <%= f.input :image %><br>
+  </div>
+  
+  <%= f.input :tax_type, collection: ['GST', 'PST', 'GST & PST', 'None'], as: :select, prompt: "Select a Tax Type", autofocus: 'true', class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :category %><br>
+    <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category" %>
+  </div>
+  <%= f.input :comment, placeholder: "Enter an optional comment...", class: "form-control" %><br>
   <%= f.submit %>
 <% end %>
+
+<script>
+$(function() {
+  $('#receipt_category').selectize({
+    create: true,
+    sortField: 'text'
+  });
+});
+</script>

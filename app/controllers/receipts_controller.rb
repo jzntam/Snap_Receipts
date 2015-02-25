@@ -16,9 +16,10 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.new receipt_params
     @receipt.report = @report
     if @receipt.save
-      redirect_to @report
+      redirect_to @report, notice: "REceipt Created"
     else
-      render :new
+      redirect_to :back, notice: "No worky"
+      # render :new
     end
     # render text: params
   end

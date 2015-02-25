@@ -1,22 +1,5 @@
-<div class="container dev-test">
-  <h1>Reports#show</h1>
-  <p>Find me in app/views/reports/show.html.erb</p>
-
-  <div>
-    <div>
-      <h3><%= @report.title %>: <%= @report.description %></h3>
-    </div>
-    <br>
-    <%= link_to "Add New Receipt", "javascript:void(0)", id: "new-receipt", class: "btn btn-primary" %>
-    <br>
-    <%= render partial: "receipts/new", :locals => { :receipt => @receipt } %>
-  </div>
-
-
-  <% @report.receipts.each do |receipt| %>
     <div class="receipt-box dev-test">
-    <%#= link_to "EDIT this REceipt", edit_report_receipt_path(@report, receipt) %>
-    <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
+      <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
     </div>
 
     <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -45,6 +28,3 @@
         </div> <!-- modal-content -->
       </div> <!-- modal-dialog -->
     </div> <!-- modal and id="myModal_<%= receipt.id %>"-->
-  <% end %> <!-- do loop -->
-
-</div> <!-- container -->

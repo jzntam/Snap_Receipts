@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require jquery-ui
+ *= require selectize
+ *= require selectize.bootstrap2
  *= require_tree .
  *= require_self
  */
@@ -72,17 +74,15 @@ body .modal-dialog {
   background-color: rgba(253,123,17,0.1);
 }
 
-// #sortable {
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-// }
+.receipt-form {
+  padding: 20px;
+}
 
-// #sortable div {
-//   margin: 0 5px 5px 5px;
-//   padding: 5px;
-//   min-height: 40px;
-// }
-
+.carrier-wave-field input {
+  height: 40px;
+  width: 100%;
+  background-color: rgba(253,123,17,0.1);
+  border: 1px solid orange;
+}
 
 

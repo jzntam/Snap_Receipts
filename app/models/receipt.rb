@@ -1,6 +1,8 @@
 class Receipt < ActiveRecord::Base
   # validates :business_name, presence: true
-  
+  validates :image, presence: true
+  validates :tax_type, presence: true
+
   mount_uploader :image, ImageUploader
   belongs_to :report
 
