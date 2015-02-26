@@ -1,0 +1,3 @@
+$('#myModal_<%= @receipt.id %>').addClass('animated bounceOut').fadeOut(1200);
+setTimeout(function(){
+  $('#<%= dom_id(@receipt) %>').addClass('animated zoomOutUp').fadeOut(1000)}, 1200);

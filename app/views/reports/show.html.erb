@@ -14,9 +14,8 @@
 
 
   <% @report.receipts.each do |receipt| %>
-    <div class="receipt-box dev-test">
-    <%#= link_to "EDIT this REceipt", edit_report_receipt_path(@report, receipt) %>
-    <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
+    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
+    <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"}, class: 'disabled-link' %>
     </div>
 
     <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

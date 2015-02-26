@@ -34,19 +34,28 @@ class ReceiptsController < ApplicationController
   
   def update
     @receipt = Receipt.find params[:id]
-    if @receipt.update receipt_params
-      redirect_to report_path(@receipt.report_id)
-      # redirect_to report_receipts_path
-    else
-      render :edit
+    respond_to do |format|
+      if @receipt.update receipt_params
+        format.html {redirect_to report_path(@receipt.report_id)}
+        format.js {render}
+      else
+        format.html {redirect_to report_path(@receipt.report_id)}
+        format.js {render}
+      end
     end
   end
 
   def destroy
     @receipt = Receipt.find params[:id]
-    @receipt.destroy
-    redirect_to report_path(@receipt.report_id)
-    # redirect_to :back
+    respond_to do |format|
+      if @receipt.destroy
+        format.html {redirect_to report_path(@receipt.report_id)}
+        format.js {render}
+      else
+        format.html {redirect_to report_path(@receipt.report_id)}
+        format.js {render}
+      end
+    end
     # render text: params
   end
 

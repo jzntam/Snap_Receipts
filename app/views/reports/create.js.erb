@@ -1,10 +1,15 @@
 $("#report-form .flash-messages").html('');
+$('#new-report').val()
 <% if @report.errors.any? %>
   $("#report-form .flash-messages").prepend('<div class="alert alert-danger animated bounceInDown"><h4><%= @report.errors.full_messages.join(' & ') %></h4></div>');
 <% else %>
-  var party = $("<%= j render partial: '/reports/report', locals: {report: @report} %>").addClass( "animated rotateIn" );
+  var party = $("<%= j render partial: '/reports/report', locals: {report: @report} %>").addClass( "animated rollIn" );
+  var origReport = $('#new-report').val()
   $(".reports").prepend(party)
   <% @report = Report.new %>
   $("#report-form .form").html("<%= j render 'reports/form' %>");
-  $("#report-form").slideToggle();
+
+  // $("#report-form").slideToggle();
+  // $('#new-report').html("Create a New Report")
+  // $('#new-report').removeClass('btn-dark').addClass("btn-primary")
 <% end %>

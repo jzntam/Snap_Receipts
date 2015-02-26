@@ -9,6 +9,6 @@
   <%= f.select :tax_type, [['None', 'None'], ['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST']] %><br>
   <%= f.label :total %><br>
   <%= f.text_field :total %><br>
-  <%= f.submit "Update", class: "btn btn-primary" %>
-  <%= link_to "Delete", report_receipt_path(@report, receipt), method: :delete, class: "btn btn-danger" %>
+  <%= f.submit "Update", remote: true, class: "btn btn-primary" %>
+  <%= link_to "Delete", report_receipt_path(@report, receipt), remote: true, method: :delete, class: "btn btn-danger" %>
 <% end %>

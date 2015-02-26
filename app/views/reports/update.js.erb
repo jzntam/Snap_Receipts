@@ -1,2 +1,3 @@
 $("#snap_<%= dom_id(@report) %>").hide();
-$(".reports").prepend("<%= j render partial: '/reports/report', locals: {report: @report} %>");
+var party = $("<%= j render partial: '/reports/report', locals: {report: @report} %>").fadeIn().addClass( "animated fadeInLeft" );
+$(".reports").prepend(party);
