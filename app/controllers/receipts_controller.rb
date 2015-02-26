@@ -35,7 +35,7 @@ class ReceiptsController < ApplicationController
   def update
     @receipt = Receipt.find params[:id]
     respond_to do |format|
-      if @receipt.update receipt_params
+      if @receipt.update(receipt_params)
         format.html {redirect_to report_path(@receipt.report_id)}
         format.js {render}
       else

@@ -1,1 +1,2 @@
-$('#myModal_<%= @receipt.id %>').hide()
+$('#myModal_<%= @receipt.id %>').fadeOut("fast");
+$(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");

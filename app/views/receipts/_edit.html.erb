@@ -1,5 +1,5 @@
 <% receipt = defined?(receipt) ? receipt : @receipt %>
-<%= form_for [@report, receipt] do |f| %>
+<%= form_for [@report, receipt], remote: true do |f| %>
   <%= f.label :business_name %><br>
   <%= f.text_field :business_name %><br>
   <%= f.label :sub_total %><br>
@@ -9,6 +9,21 @@
   <%= f.select :tax_type, [['None', 'None'], ['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST']] %><br>
   <%= f.label :total %><br>
   <%= f.text_field :total %><br>
-  <%= f.submit "Update", remote: true, class: "btn btn-primary" %>
+  <%= f.label :category %><br>
+  <div class="form-group">
+    <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['KTravel']], prompt: "Select or Type a Category" %>
+  </div>
+  <%= f.label :comment %><br>
+  <%= f.text_field :comment, placeholder: "Comment...", class: "form-control" %><br>
+  <%= f.submit "Update", class: "btn btn-primary" %>
   <%= link_to "Delete", report_receipt_path(@report, receipt), remote: true, method: :delete, class: "btn btn-danger" %>
 <% end %>
+
+<script>
+$(function() {
+  $('#receipt_category').selectize({
+    create: true,
+    sortField: 'text'
+  });
+});
+</script>

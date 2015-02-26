@@ -19,7 +19,11 @@ class Receipt < ActiveRecord::Base
     ocr_data = /(\b^[Tt][OoD][Tt][AaRH])\w+\s+([$]?|[$]?\s+)([\d]+.\d\d)/.match(my_var)
     tax_data = /(\b[Tt][Aa]|[Gg][Ss]|[Pp][Ss]).+\s+.([\d]*.\d\d)/.match(my_var)
     self.business_name = first_line.strip
-    self.total = ocr_data[-1]
+    if ocr_data == nil
+      self.total = 0
+    else
+      self.total = ocr_data[-1]
+    end
     if self.tax_total == nil
       set_tax
     end

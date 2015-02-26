@@ -5,4 +5,11 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
+  $(function() {
+    $('#receipt_category').selectize({
+      create: true,
+      sortField: 'text'
+    });
+  });
+
 }); //end of document ready
