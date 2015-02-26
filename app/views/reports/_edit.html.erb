@@ -1,5 +1,5 @@
 <div id="edit_report_<%= report.id %>" class="dev-test">
-  <%= form_for report do |f| %>
+  <%= form_for report, remote: true do |f| %>
     <%= f.label :title %><br>
     <%= f.text_field :title %><br>
     <%= f.label :description %><br>

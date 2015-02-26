@@ -1,0 +1,2 @@
+$("#snap_<%= dom_id(@report) %>").hide();
+$(".reports").prepend("<%= j render partial: '/reports/report', locals: {report: @report} %>");

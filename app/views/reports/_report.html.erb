@@ -4,8 +4,10 @@
     <%= link_to report.title, report_path(report) %>
     <%= report.description %>
     <%#= link_to "edit", edit_report_path(report) %>
-    <%= link_to "edit", "javascript:void(0)", id: "report_#{report.id}", class: "btn btn-primary" %>
+    <%= link_to "Edit", "javascript:void(0)", id: "report_#{report.id}", class: "btn btn-primary" %>
     <%= link_to "Delete", report_path(report), method: :delete, remote: true %>
-    <p><%= render "reports/edit", report: report %></p>
+    <div>
+      <%= render "reports/edit", report: report %>
+    </div>
   </div>
 </div>

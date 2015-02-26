@@ -28,9 +28,15 @@ class ReportsController < ApplicationController
 
   def update
     @report = Report.find(params[:id])
-    @report.update(report_params)
-
-    redirect_to reports_path
+    respond_to do |format|
+      if @report.update(report_params)
+        format.html {redirect_to reports_path}
+        format.js {render}
+      else
+        format.html {redirect_to reports_path}
+        format.js {render}
+      end
+    end
   end
 
   def destroy
