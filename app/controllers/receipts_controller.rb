@@ -9,7 +9,6 @@ class ReceiptsController < ApplicationController
       format.xls
     end
   end
-
   
   def new
     @report = Report.find(params[:report_id])
@@ -29,9 +28,6 @@ class ReceiptsController < ApplicationController
     # render text: params
   end
 
-  def show
-  end
-  
   def edit
     @receipt = Receipt.find(params[:id])
     @report = Report.find(params[:report_id])

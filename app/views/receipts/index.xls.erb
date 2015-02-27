@@ -1,13 +1,13 @@
 <table border="1">
   <tr>
-    <td>Business Name</td>
-    <td>Sub Total</td>
-    <td>Tax Total</td>
-    <td>Tax Type</td>
-    <td>Total</td>
-    <td>Date</td>
-    <td>Category</td>
-    <td>Comments</td>
+    <td><h3>Business Name</h3></td>
+    <td><h3>Sub Total</h3></td>
+    <td><h3>Tax Total</h3></td>
+    <td><h3>Tax Type</h3></td>
+    <td><h3>Total</h3></td>
+    <td><h3>Date</h3></td>
+    <td><h3>Category</h3></td>
+    <td><h3>Comments</h3></td>
   </tr>
   <% @receipts.each do |receipt| %>
   <tr>
@@ -21,4 +21,14 @@
     <td><%= receipt.comment %></td>
   </tr>
   <% end %>
+  <tr>
+    <td></td>
+    <td><h3><%= number_to_currency(@receipts.sum(:sub_total)) %></h3></td>
+    <td><h3><%= number_to_currency(@receipts.sum(:tax_total)) %></h3></td>
+    <td></td>
+    <td><h3><%= number_to_currency(@receipts.sum(:total)) %></h3></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>

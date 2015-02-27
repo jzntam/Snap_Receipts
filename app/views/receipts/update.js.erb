@@ -1,3 +1,4 @@
 // $('#myModal_<%= @receipt.id %>').fadeOut("fast");
 $('#myModal_<%= @receipt.id %>').modal("hide");
+$('#<%= dom_id(@receipt) %>').remove()
 $(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");
