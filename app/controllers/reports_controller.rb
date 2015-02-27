@@ -18,6 +18,7 @@ class ReportsController < ApplicationController
   end
 
   def show
+    @locations = Receipt.near([49.2314389, -123.0657958], 20, units: :km)
     @report = Report.find(params[:id])
     @receipt = Receipt.new
   end

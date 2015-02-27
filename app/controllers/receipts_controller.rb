@@ -33,6 +33,7 @@ class ReceiptsController < ApplicationController
   end
   
   def update
+    @report = Report.find(params[:report_id])
     @receipt = Receipt.find params[:id]
     respond_to do |format|
       if @receipt.update(receipt_params)

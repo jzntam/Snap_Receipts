@@ -21,6 +21,9 @@ gem 'fog'
 gem 'simple_form'
 gem "font-awesome-rails"
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'jquery-ui-rails'

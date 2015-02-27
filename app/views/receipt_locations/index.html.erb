@@ -1,0 +1,16 @@
+<h1>ReceiptLocations#index</h1>
+<p>Find me in app/views/receipt_locations/index.html.erb</p>
+
+
+<div id="map" style='height: 400px;'></div>
+
+<script>
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw generate_markers(@locations) %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });
+</script>

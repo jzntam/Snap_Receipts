@@ -2,9 +2,12 @@ class Receipt < ActiveRecord::Base
   # validates :business_name, presence: true
   validates :image, presence: true
   validates :tax_type, presence: true
+  belongs_to :report
+
+  geocoded_by :address
+  after_validation :geocode
 
   mount_uploader :image, ImageUploader
-  belongs_to :report
 
   before_create :image_data #, :if => lambda {|r| r.image }
 

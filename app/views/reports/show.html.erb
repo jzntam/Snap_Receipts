@@ -39,6 +39,21 @@
         </div> <!-- modal-content -->
       </div> <!-- modal-dialog -->
     </div> <!-- modal and id="myModal_<%= receipt.id %>"-->
+    <script>
+      mappyMaps(<%= receipt.longitude %>, <%= receipt.latitude %>, <%= receipt.business_name %>)
+    </script>
   <% end %> <!-- do loop -->
   </div> <!-- receipt-loop-container -->
 </div> <!-- container -->
+<div id="map" style='height: 400px; width: 500px;' class="dev-test"></div>
+
+<script>
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw generate_markers(@locations) %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });
+</script>

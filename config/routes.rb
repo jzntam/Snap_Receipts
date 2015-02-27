@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :receipts
   end
 
+  resources :receipt_locations, only: :index
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

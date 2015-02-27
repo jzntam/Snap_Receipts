@@ -25,16 +25,24 @@
   }
 
 
-// // Drag and drop report sorting
-// $(document).ready(function() {
-//   $(function() {
-//     $( "#sortable" ).sortable({
-//       placeholder: "ui-state-highlight"
-//     });
-//     $( "#sortable" ).disableSelection();
-//   });
-// }); //end of document ready
-
-
+var mappyMaps = function(){
+  initialize: function(longitude, latitude, business_name) {
+    $(document).ready(function(){
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          {
+            "lat": latitude,
+            "lng": longitude,
+            "infowindow": "business_name"
+          }
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(13);
+      });
+    })
+  };
+};
 
 
