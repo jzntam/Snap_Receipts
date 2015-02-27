@@ -7,6 +7,11 @@
       <h3><%= @report.title %>: <%= @report.description %></h3>
       <h4>Total Spent During this Period: <%= number_to_currency(@report.receipts.sum(:total)) %></h4>
       <h4>Number of Transactions: <%= @report.receipts.count %></h4>
+      <p>
+        Download:
+        <%= link_to "CSV", report_receipts_path(@report, format: "csv") %> |
+        <%= link_to "Excel", report_receipts_path(@report, format: "xls") %>
+      </p>
     </div>
     <br>
     <%= link_to "Add New Receipt", "javascript:void(0)", id: "new-receipt", class: "btn btn-primary" %>

@@ -3,6 +3,11 @@ class ReceiptsController < ApplicationController
   def index
     @receipts = Receipt.all
     @report = Report.find(params[:report_id])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @receipts.to_csv }
+      format.xls
+    end
   end
 
   

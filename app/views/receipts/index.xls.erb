@@ -1,0 +1,24 @@
+<table border="1">
+  <tr>
+    <td>Business Name</td>
+    <td>Sub Total</td>
+    <td>Tax Total</td>
+    <td>Tax Type</td>
+    <td>Total</td>
+    <td>Date</td>
+    <td>Category</td>
+    <td>Comments</td>
+  </tr>
+  <% @receipts.each do |receipt| %>
+  <tr>
+    <td><%= receipt.business_name %></td>
+    <td><%= receipt.sub_total %></td>
+    <td><%= receipt.tax_total %></td>
+    <td><%= receipt.tax_type %></td>
+    <td><%= receipt.total %></td>
+    <td><%= receipt.created_at %></td>
+    <td><%= receipt.category %></td>
+    <td><%= receipt.comment %></td>
+  </tr>
+  <% end %>
+</table>

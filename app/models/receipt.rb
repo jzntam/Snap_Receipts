@@ -7,6 +7,7 @@ class Receipt < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+
   mount_uploader :image, ImageUploader
 
   before_create :image_data #, :if => lambda {|r| r.image }
@@ -42,6 +43,15 @@ class Receipt < ActiveRecord::Base
       self.tax_total = (self.total - (self.total / 1.12))
     else
       self.tax_total = 0
+    end
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |receipt|
+        csv << receipt.attributes.values_at(*column_names)
+      end
     end
   end
 
