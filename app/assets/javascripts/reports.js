@@ -25,24 +25,26 @@
   }
 
 
-var mappyMaps = function(){
-  initialize: function(longitude, latitude, business_name) {
-    $(document).ready(function(){
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers([
-          {
-            "lat": latitude,
-            "lng": longitude,
-            "infowindow": "business_name"
-          }
-        ]);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(13);
-      });
-    })
-  };
-};
+// var mappyMaps = function(){
+//   initialize: function(longitude, latitude, business_name) {
+//     $(document).ready(function(){
+//       handler = Gmaps.build('Google');
+//       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+//         markers = handler.addMarkers([
+//           {
+//             "lat": latitude,
+//             "lng": longitude,
+//             "infowindow": "business_name"
+//           }
+//         ]);
+//         handler.bounds.extendWith(markers);
+//         handler.fitMapToBounds();
+//         handler.getMap().setZoom(13);
+//       });
+//     })
+//   };
+// };
+
+// mappyMaps(<%= receipt.longitude %>, <%= receipt.latitude %>, <%= receipt.business_name %>)
 
 
