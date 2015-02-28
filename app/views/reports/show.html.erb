@@ -2,8 +2,8 @@
   <h1>Reports#show</h1>
   <p>Find me in app/views/reports/show.html.erb</p>
 
-  <div>
-    <div>
+  <div class="col-md-12">
+    <div class="col-md-5">
       <h3><%= @report.title %>: <%= @report.description %></h3>
       <h4>Total Spent During this Period: <%= number_to_currency(@report.receipts.sum(:total)) %></h4>
       <h4>Number of Transactions: <%= @report.receipts.count %></h4>
@@ -13,16 +13,22 @@
         <%= link_to "Excel", report_receipts_path(@report, format: "xls") %>
       </p>
     </div>
-    <br>
+    <div id="map-container" class="col-md-7">
+      <div id="map" style='height: 400px; width: 100%;' class="col-md-7"></div>
+    </div>
+  </div>
+  <div class="col-md-12">
     <%= link_to "Add New Receipt", "javascript:void(0)", id: "new-receipt", class: "btn btn-primary" %>
-    <br>
     <%= render partial: "receipts/new", :locals => { :receipt => @receipt } %>
   </div>
 
-  <div class="receipt-loop-container">
+  <div class="receipt-loop-container col-md-12">
   <% @report.receipts.each do |receipt| %>
-    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
-    <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"}, class: 'disabled-link' %>
+    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test col-md-3">
+      <div class="absolute-center">
+      <h5><%= receipt.business_name %></h5>
+        <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"}, class: 'disabled-link' %>
+      </div>
     </div>
 
     <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -49,7 +55,6 @@
   <% end %> <!-- do loop -->
   </div> <!-- receipt-loop-container -->
 </div> <!-- container -->
-<div id="map" style='height: 400px; width: 600px;' class="dev-test"></div>
 
 <script>
   $(document).ready(function(){

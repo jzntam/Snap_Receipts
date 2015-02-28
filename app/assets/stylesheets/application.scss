@@ -68,16 +68,32 @@ body .modal-dialog {
   border: 1px solid orange;
 }
 
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .receipt-box {
-  height: 200px;
-  width: 200px;
+  height: 350px;
+  width: 250px;
+  margin: 5px;
   display: inline-block;
-  background-color: rgba(253,123,17,0.1);
+  position: relative;
+  text-align: center;
+  color: white;
+  // background-color: rgba(253,123,17,0.1);
+  background-color: #337AB7;
 }
 
 .receipt-form {
   padding: 20px;
 }
+
+// .receipt-loop-container {
+//   text-align: center;
+// }
 
 .carrier-wave-field input {
   height: 40px;

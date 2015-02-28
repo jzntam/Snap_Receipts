@@ -6,20 +6,26 @@
   </ul>
 <% end %>
 
-<div class="row">
-  <div id="receipt-form-toggle" class="dev-test receipt-form col-md-6">
+<div class="row dev-test">
+  <div id="receipt-form-toggle" class="receipt-form">
     <%= simple_form_for [@report, @receipt] do |f| %>
-      <%= f.label :image, "Select an image to upload" %><br>
-      <div class="carrier-wave-field">
-      <%= f.file_field :image %><br>
+      <div class="carrier-wave-field col-md-4">
+        <%= f.label :image, "Select an image to upload" %>    
+        <%= f.file_field :image %>
       </div>
-      <%= f.label :tax_type %><br>
-      <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], { prompt: "Select a Tax Type" }, {autofocus: 'true', class: 'form-control'} %><br>
-      <%= f.label :category %><br>
-      <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category" %><br>
-      <%= f.label :comment %><br>
-      <%= f.text_field :comment, placeholder: "Comment...", class: "form-control" %><br>
-      <%= f.submit %>
+      <div class="col-md-4">
+        <%= f.label :tax_type %>
+        <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], { prompt: "Select a Tax Type" }, {autofocus: 'true', class: 'form-control'} %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :category %>
+        <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category" %>
+      </div>
+      <div class="col-md-8">
+        <%= f.label :comment %><br>
+        <%= f.text_field :comment, placeholder: "Comment...", class: "form-control" %><br>
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>

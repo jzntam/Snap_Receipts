@@ -1,5 +1,8 @@
     <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
-      <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
+      <div class="absolute-center">
+      <h5><%= receipt.business_name %></h5>
+        <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
+      </div>
     </div>
 
     <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
