@@ -1,4 +1,4 @@
-    <div class="receipt-box dev-test">
+    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
       <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
     </div>
 
