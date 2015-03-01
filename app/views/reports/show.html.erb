@@ -1,10 +1,13 @@
+<div class="container-fluid">
+  <div class="container">
+    <h2><%= @report.title %>: <%= @report.description %></h2>
+    <p>Find me in app/views/reports/show.html.erb</p>
+  </div>
+</div>
 <div class="container dev-test">
-  <h1>Reports#show</h1>
-  <p>Find me in app/views/reports/show.html.erb</p>
-
   <div class="col-md-12">
     <div class="col-md-5">
-      <h3><%= @report.title %>: <%= @report.description %></h3>
+      <h3>Report Period Summary</h3>
       <h4>Total Spent During this Period: <%= number_to_currency(@report.receipts.sum(:total)) %></h4>
       <h4>Number of Transactions: <%= @report.receipts.count %></h4>
       <p>
@@ -24,7 +27,7 @@
 
   <div class="receipt-loop-container col-md-12">
   <% @report.receipts.each do |receipt| %>
-    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test col-md-3">
+    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
       <div class="absolute-center">
       <h5><%= receipt.business_name %></h5>
         <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"}, class: 'disabled-link' %>

@@ -8,7 +8,8 @@
 
 <div class="row dev-test">
   <div id="receipt-form-toggle" class="receipt-form">
-    <%= simple_form_for [@report, @receipt] do |f| %>
+    <%= simple_form_for [@report, @receipt], remote: true do |f| %>
+    <%#= token_tag(nil) %>
       <div class="carrier-wave-field col-md-4">
         <%= f.label :image, "Select an image to upload" %>    
         <%= f.file_field :image %>
@@ -29,6 +30,7 @@
     <% end %>
   </div>
 </div>
+<br>
 
 <script>
   // Add new receipt form toggle. in the report/show view 
@@ -52,4 +54,15 @@
         .toggleClass("btn-dark", toggled);
     });
   }); //end of document ready
+
+  $(document).ready(function(){
+    $(function() {
+      $('#receipt_category').selectize({
+        create: true,
+        sortField: 'text'
+      });
+    });
+  });
+
 </script>
+

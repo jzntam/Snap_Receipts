@@ -19,11 +19,15 @@ class ReceiptsController < ApplicationController
     @report = Report.find(params[:report_id])
     @receipt = Receipt.new receipt_params
     @receipt.report = @report
-    if @receipt.save
-      redirect_to @report, notice: "REceipt Created"
-    else
-      redirect_to :back, notice: "No worky"
-      # render :new
+    respond_to do |format|
+      if @receipt.save
+        format.html {redirect_to @report, notice: "Receipt Created"}
+        format.js {render}
+      else
+        format.html {redirect_to :back, notice: "No worky"}
+        format.js {render}
+        # render :new
+      end
     end
     # render text: params
   end

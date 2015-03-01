@@ -1,7 +1,2 @@
-<% if @receipt.errors.any? %>
-  $(".receipt-form").html("<%= j render '/receipts/new' %>");
-<% else %>
-  $(".receipts-container").prepend("<%= j render partial: '/receipts/discussion', locals: {receipt: @receipt} %>");
-  <% @receipt = Receipt.new %>
-  $(".receipt-form").html("<%= j render '/receipts/new' %>");
-<% end %>
+$(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt' %>");
+
