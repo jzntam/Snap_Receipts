@@ -8,26 +8,10 @@
 
 <div class="row dev-test">
   <div id="receipt-form-toggle" class="receipt-form">
-    <%= simple_form_for [@report, @receipt], remote: true do |f| %>
-    <%#= token_tag(nil) %>
-      <div class="carrier-wave-field col-md-4">
-        <%= f.label :image, "Select an image to upload" %>    
-        <%= f.file_field :image %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :tax_type %>
-        <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], { prompt: "Select a Tax Type" }, {autofocus: 'true', class: 'form-control'} %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :category %>
-        <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category" %>
-      </div>
-      <div class="col-md-8">
-        <%= f.label :comment %><br>
-        <%= f.text_field :comment, placeholder: "Comment...", class: "form-control" %><br>
-        <%= f.submit class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    <div class="flash-messages"></div>
+      <div class="form">
+        <%= render "receipts/form" %>
+    </div>
   </div>
 </div>
 <br>

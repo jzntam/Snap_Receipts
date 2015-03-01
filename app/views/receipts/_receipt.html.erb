@@ -18,12 +18,6 @@
                 <%= image_tag(receipt.image_url(:fitted)) if receipt.image? %></p> 
               </div>
               <div class="modal-columns">
-                <p>Business Name: <%= receipt.business_name %></p>
-                <p><%= standard_date(receipt.created_at) %></p>
-                <p>Subtotal: <%= number_to_currency(receipt.sub_total) %></p>
-                <p><%= receipt.tax_type %> Tax: <%= number_to_currency(receipt.tax_total) %></p>
-                <p>Total: <%= number_to_currency(receipt.total) %></p>
-                <p><%#= render "receipts/edit", receipt: receipt %></p>
                 <p><%= render partial: "receipts/edit", :locals => { :receipt => receipt } %></p>
               </div>
             </center>

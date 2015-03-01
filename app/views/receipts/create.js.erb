@@ -1,2 +1,10 @@
-$(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt' %>");
-
+$("#receipt-form-toggle .flash-messages").html('');
+$('#new-receipt').val()
+<% if @receipt.errors.any? %>
+  $("#receipt-form-toggle .flash-messages").prepend('<div class="alert alert-danger animated bounceInDown"><h4><%= @receipt.errors.full_messages.join(' & ') %></h4></div>');
+<% else %>
+  // var partyPartial = $("<%= j render partial: '/receipts/receipt', locals: {receipt: @receipt} %>").addClass( "animated fadeInLeftBig" );
+  // $(".receipt-loop-container").prepend(partyPartial)
+  // <% @receipt = Receipt.new %>
+  // $("#receipt-form-toggle .form").html("<%= j render 'receipts/form' %>");
+<% end %>
