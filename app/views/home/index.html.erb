@@ -1,27 +1,29 @@
-<!-- Jumbotron / Header -->
-<header id="top" class="header">
+<!-- Header / Landing Section -->
+<header class="header">
   <div class="text-vertical-center">
     <h1>Snap Receipts</h1>
     <h3>Manage Your Expenses Digitally</h3>
     <br>
-    <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+    <%= link_to "What is it?", "#about", class: "btn btn-blue btn-lg" %>
   </div>
 </header>
 
-<!-- About Page -->
+<!-- About section -->
 <div id="about" class="about">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h2>
-        <p class="lead">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <h2>Final Project: &#60;&#47;&#62; CodeCore Bootcamp, Cohort 6</h2>
+        <p>
+          Snap Receipts or 'Snap-R', is a responsive web app with mobile capabilities. The app was inspired by my own issues with keeping track of my receipts and the hassle of entering them into a spreadsheet for my accountant. It is name after the mobile app 'Snaps' that was created demo'd to us by Brent Vatne during our first week of classes, which influenced me to pursue the project. Special thanks goes out our Instructors who all had a hand in the conception and creation of this app. Tam, Mitch, Brent, Gabe, Rick, Drewbro, Luke and Shahrzad.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Services -->
-<div id="services" class="services bg-primary">
+<!-- How It Works -->
+<div id="how-it-works" class="how-it-works bg-primary">
   <div class="container">
     <div class="row text-center">
       <div class="col-lg-10 col-lg-offset-1">
@@ -29,47 +31,55 @@
         <hr class="small">
         <div class="row">
           <div class="col-md-3 col-sm-6">
-            <div class="service-item">
+            <div class="how-icon-box">
               <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-file-text-o fa-stack-1x text-primary"></i>
               </span>
               <h4><strong>Organize Receipts</strong></h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <%= link_to "More Info", "javascript:void(0)", id: "org_rec", class: "btn btn-light" %>
+              <p id="org_rec_more">
+                Keeping track of your receipts can take a lot of time and can be quite a hassle. However, it is a vital part of personal finance and business, not to mention essential for your taxes. We will help make it easier to track your finances.
+              </p>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="service-item">
+            <div class="how-icon-box">
               <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-camera-retro fa-stack-1x text-primary"></i>
               </span>
               <h4><strong>Take a Picture</strong></h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <%= link_to "More Info", "javascript:void(0)", id: "take_pic", class: "btn btn-light" %>
+              <p id="take_pic_more">
+                Like everyone in the digital world, we all have cameras on our phones. Streamline the process. Take pictures of your receipts and have them ready for your budget meetings, tax season, or whatever budget you wan to track.
+              </p>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="service-item">
+            <div class="how-icon-box">
               <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-picture-o fa-stack-1x text-primary"></i>
               </span>
               <h4><strong>Scan Image</strong></h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <%= link_to "More Info", "javascript:void(0)", id: "scan_img", class: "btn btn-light" %>
+              <p id="scan_img_more">
+                Scan and upload your images as well. You can throw your images on a cd or usb drive and hand them to your accountant. Save on paper waste. Go green.
+              </p>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="service-item">
+            <div class="how-icon-box">
               <span class="fa-stack fa-4x">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-database fa-stack-1x text-primary"></i>
               </span>
               <h4><strong>Database</strong></h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              <a href="#" class="btn btn-light">Learn More</a>
+              <%= link_to "More Info", "javascript:void(0)", id: "db_cloud", class: "btn btn-light" %>
+              <p id="db_cloud_more">
+                File folders, paperclips and staples. This is how we usually save and track your receipts. Accessing the records and cause an even bigger mess. Store and sort your receipts digitally in the cloud.
+              </p>
             </div>
           </div>
         </div>
@@ -80,7 +90,7 @@
 
 <!-- Footer -->
 <footer>
-  <div class="container">
+  <div id="contact" class="container">
     <div class="row">
       <div class="col-lg-10 col-lg-offset-1 text-center">
         <h4><strong>Snap Receipts Ltd.</strong></h4>
@@ -94,13 +104,7 @@
         <br>
         <ul class="list-inline">
           <li>
-            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-github fa-fw fa-3x"></i></a>
+            <%= image_tag "qr_code.png"%>
           </li>
         </ul>
         <hr class="small">
@@ -109,6 +113,4 @@
     </div>
   </div>
 </footer>
-
-
 

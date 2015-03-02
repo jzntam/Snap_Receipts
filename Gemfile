@@ -17,6 +17,7 @@ gem 'rtesseract', '~> 1.2.4'
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
 gem 'fog'
+gem 'rails_12factor', group: :production
 
 gem 'simple_form'
 gem "font-awesome-rails"
@@ -33,14 +34,14 @@ gem "animate-rails"
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
-gem 'faker'
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'byebug'
-
+  gem 'faker'
+  gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  # gem 'spring'
+  gem 'spring'
 end
 

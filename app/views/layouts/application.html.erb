@@ -19,25 +19,34 @@
           <%= link_to image_tag('logo.png'), root_path %>
         </li>
         <li>
-          <%= link_to "MY REPORTS", reports_path %>
+          <%= link_to "Home", root_path %>
         </li>
         <li>
-          <%= link_to "NEW REPORT!", "#" %>
+          <%= link_to "My Reports", reports_path %>
         </li>
         <li>
-          <%#= link_to "NEW RECEIPT", report_receipts_path  %>
+          <%= link_to "My Receipts", reports_path %>
         </li>
         <li>
-          <%= link_to "something", "#" %>
+          <%= link_to "How it Works", root_path( anchor: "how-it-works") %>
         </li>
         <li>
-          <%= link_to "something", "#" %>
+          <%= link_to "About", root_path( anchor: "about") %>
         </li>
         <li>
-          <%= link_to "something", "#" %>
+          <%= link_to "Contact", root_path( anchor: "contact") %>
         </li>
+
       </ul>
+      </div>
+        <div class="bar-bottom">
+          <%= link_to "", "#", class: "fa fa-facebook fa-fw fa-3x" %>
+          <%= link_to "", "#", class: "fa fa-twitter fa-fw fa-3x" %>
+          <%= link_to "", "#", class: "fa fa-github fa-fw fa-3x" %>
+          <%= link_to "", "#", class: "fa fa-linkedin-square fa-fw fa-3x" %>
+        </div>
     </nav>
+          <%#= link_to "NEW RECEIPT", report_receipts_path  %>
 
       <%= flash[:notice] || flash[:alert] %>
       <%= yield %>
