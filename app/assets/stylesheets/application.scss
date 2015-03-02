@@ -68,6 +68,12 @@ body .modal-dialog {
 
 .report-header {
   background-color: #FFF;
+  h1, h2, h3, h4, hr {
+    color: $brand-primary;
+  }
+  p {
+    font-size: 16px;
+  }
   .my-btn {
     width: 160px;
   }
@@ -81,6 +87,8 @@ body .modal-dialog {
   margin-top: 20px;
   margin-bottom: 20px;
   vertical-align: top;
+  border-bottom: 1px solid $brand-primary;
+  padding-bottom: 10px;
   h1 {
     padding: 0;
     margin-top: 15px;
@@ -112,14 +120,28 @@ body .modal-dialog {
 .report-form-container {
   padding: 10px;
 }
+.modal-box {
+  border: 2px solid $brand-success;
+}
 
+.modal-header {
+  border-bottom: 2px solid $brand-success;
+  background-color: lighten($brand-success, 65%);
+  color: $brand-primary;
+}
+
+.modal-body {
+  background-color: lighten($brand-primary, 75%);
+}
 
 .modal-columns {
   width: 48%;
   display: inline-block;
   vertical-align: top;
   text-align: left;
-  border: 1px solid purple;
+  padding-right: 10px;
+  padding-left: 10px;
+  // border: 1px solid purple;
 }
 
 .dev-test {
@@ -169,9 +191,12 @@ a:hover.edit-icon, a:active.edit-icon {
   display: inline-block;
   position: relative;
   text-align: center;
-  color: white;
+  color: $brand-primary;
   // background-color: rgba(253,123,17,0.1);
-  background-color: #337AB7;
+  background-color: #FFF;
+  h5 {
+    font-size: 18px;
+  }
 }
 
 .receipt-form {
@@ -180,6 +205,10 @@ a:hover.edit-icon, a:active.edit-icon {
 
 .text-right {
   text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
 // .receipt-loop-container {
 //   text-align: center;

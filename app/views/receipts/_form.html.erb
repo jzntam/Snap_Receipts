@@ -2,19 +2,21 @@
     <%= token_tag(nil) %>
       <div class="carrier-wave-field col-md-4">
         <%= f.label :image, "Select an image to upload" %>    
-        <%= f.file_field :image %>
+        <%= f.file_field :image, class: "form-control" %>
       </div>
-      <div class="col-md-4">
+      <div class="form-group col-md-4">
         <%= f.label :tax_type %>
         <%= f.select :tax_type, [['GST', 'GST'], ['PST', 'PST'], ['GST & PST', 'GST & PST'], ['None', 'None']], { prompt: "Select a Tax Type" }, {autofocus: 'true', class: 'form-control'} %>
       </div>
-      <div class="col-md-4">
+      <div class="form-group col-md-4">
         <%= f.label :category %>
-        <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category" %>
+        <%= f.select :category, [['Auto'], ['Entertainment'], ['Office'], ['Travel']], prompt: "Select or Type a Category", id: "category", class: "form-control" %>
       </div>
-      <div class="col-md-8">
+      <div class="form-group col-md-12">
         <%= f.label :comment %><br>
         <%= f.text_field :comment, placeholder: "Comment...", class: "form-control" %><br>
+      </div>
+      <div class="form-group">
         <%= f.submit class: "btn btn-primary" %>
       </div>
     <% end %>

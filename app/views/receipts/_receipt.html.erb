@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-box">
         <div class="modal-content">
           <div class="modal-header">
             <a class="close btn btn-light btn-xs pull-right toggle" data-dismiss="modal" aria-label="Close"><i aria-hidden="true" class="fa fa-times fa"></i></a>
@@ -14,7 +14,7 @@
           </div>
           <div class="modal-body container-fluid dev-test">
             <center>
-              <div class="modal-columns">
+              <div class="modal-columns text-center receipt-column">
                 <%= image_tag(receipt.image_url(:fitted)) if receipt.image? %></p> 
               </div>
               <div class="modal-columns">
