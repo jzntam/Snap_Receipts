@@ -55,4 +55,16 @@ class Receipt < ActiveRecord::Base
     end
   end
 
+  def self.not_time(parts)
+      if parts
+        where.not("title @@ :s", s: parts )
+      end
+  end
+  
+  def self.time_search(words)
+    if words
+      where("title @@ :s", s: words )
+    end
+  end
+
 end

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'searches/new'
+
+  get 'searches/show'
+
   resources :reports do
     resources :receipts
   end

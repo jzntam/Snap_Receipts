@@ -1,0 +1,8 @@
+<h1> Search Results</h1>
+
+<h1>Searching for Keyword: <%= @search.keywords %>, Keyword: <%#= @search.title %>, Keyword: <%#= @search.name %>, <br> Excluding Keyword: <%#= @search.part %></h1>
+<h1><% @receipts.each do |r| %></h1>
+  <%= r.title %>
+  <hr>
+<% end %>
+<br>

@@ -1,0 +1,20 @@
+<h2>Advanced Search</h2>
+
+<%= form_for @search do |f| %>
+  <div class="field">
+    <br> Use
+    <%= f.label :keyword %>
+    <%= f.text_field :keyword %>
+    <br> And
+    <%#= f.label :keyword %>
+    <%#= f.text_field :title %>
+    <br> And
+    <%#= f.label :keyword %>
+    <%#= f.text_field :name %>
+    <br> Not 
+    <%#= f.label :keyword %>
+    <%#= f.text_field :part %>
+  </div>
+
+  <div class="Actions"><%= f.submit "Advanced Search" %></div>
+  <% end %>
