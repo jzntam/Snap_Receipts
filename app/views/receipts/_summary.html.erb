@@ -1,0 +1,38 @@
+<div id="receipt-summary">
+  <h3>Report Period Summary</h3>
+  <h4>Number of Transactions: <%= @report.receipts.count %></h4>
+  <br>
+
+  <table style="width:100%">
+    <tr>
+      <td><h4>Auto Expenses: </h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.where(category: "Auto").sum(:total)) %></h4></td>
+    </tr>
+    <tr>
+      <td><h4>Entertainment Expenses:</h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.where(category: "Entertainment").sum(:total)) %></h4></td>
+    </tr>
+    <tr>
+      <td><h4>Office Expenses</h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.where(category: "Office").sum(:total)) %></h4></td>
+    </tr>
+    <tr>
+      <td><h4>Travel Expenses</h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.where(category: "Travel").sum(:total)) %></h4></td>
+    </tr>
+    <tr>
+      <td><h4>Total Spent on Taxes:</h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.sum(:tax_total)) %></h4></td>
+    </tr>
+    <tr>
+      <td><h4>Total Spent During this Period:</h4></td>
+      <td class="text-right"><h4><%= number_to_currency(@report.receipts.sum(:total)) %></h4></td>
+    </tr>    
+  </table>
+  <br>
+  <p>
+    Download:
+    <%= link_to "CSV", report_receipts_path(@report, format: "csv") %> |
+    <%= link_to "Excel", report_receipts_path(@report, format: "xls") %>
+  </p>
+</div>
