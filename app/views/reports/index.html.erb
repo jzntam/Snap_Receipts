@@ -1,16 +1,26 @@
-<div class="container dev-test">
-  <h1>Reports#index</h1>
-  <p>Find me in app/views/reports/index.html.erb</p>
-  <p>THIS VIEW SHOWS ALL THE REPORTS/BUDGETS</p>
+<div class="container-fluid report-header">
+  <div class="container">
+    <div class="header-container col-md-12">
+      <div class="header-icon col-md-3"><i class="fa fa-bar-chart fw fa-5x"></i></div>
+      <div class="col-md-7">
+        <h1>Expense Reports Dashboard</h1>
+        <h4>Create or Select a 'Report' or 'Budget' to work on</h4>
+      </div>
+    </div>
+    <p><%= link_to "Create a New Report", "javascript:void(0)", id: "new-report", class: "btn btn-primary my-btn" %></p>
+    <p><%= render "reports/new" %></p>
+  </div>
+  <br>
+</div>
 
-  <p><%= link_to "Create a New Report", "javascript:void(0)", id: "new-report", class: "btn btn-primary" %></p>
-  <p><%= render "reports/new" %></p>
-  <hr>
-
-  <div id="sortable" class="reports">
-    <% @reports.each do |report| %>
-      <%= render "reports/report", report: report %>
-    <% end %>
+<div class="container-fluid">
+  <div class="container">
+    <br>
+    <div id="sortable" class="reports">
+      <% @reports.each do |report| %>
+        <%= render "reports/report", report: report %>
+      <% end %>
+    </div>
   </div>
 </div>
 

@@ -1,11 +1,11 @@
 <!-- This is what is inside the loop -->
 <div id="snap_<%= dom_id(report) %>">
   <div class="well">
-    <%= link_to report.title, report_path(report) %>
-    <%= report.description %>
-    <%#= link_to "edit", edit_report_path(report) %>
-    <%= link_to "Edit", "javascript:void(0)", id: "report_#{report.id}", class: "btn btn-primary" %>
-    <%= link_to "Delete", report_path(report), method: :delete, remote: true %>
+    <h4><%= link_to report.title, report_path(report) %></h4>
+    <p><%= report.description %></p>
+    <%= link_to "Edit", "javascript:void(0)", id: "report_#{report.id}", class: "btn btn-primary btn-sm" %>
+    <%= link_to "Delete", report_path(report), method: :delete, data: { confirm: "Are you sure you want to delete this report?" }, remote: true, class: "btn btn-danger btn-sm" %>
+    <br><br>
     <div>
       <%= render "reports/edit", report: report %>
     </div>

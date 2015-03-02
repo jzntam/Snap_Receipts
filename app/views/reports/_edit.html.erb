@@ -1,10 +1,12 @@
-<div id="edit_report_<%= report.id %>" class="dev-test">
-  <%= form_for report, remote: true do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %><br><br>
-    <%= f.submit %>
+<div id="edit_report_<%= report.id %>" class="form-box">
+  <%= simple_form_for report, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.input :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.input :description, class: "form-control" %>
+    </div>
+    <%= f.submit class: "btn btn-success" %>
   <% end %>
 </div>
 

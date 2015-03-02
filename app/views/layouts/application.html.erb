@@ -46,12 +46,10 @@
           <%= link_to "", "#", class: "fa fa-linkedin-square fa-fw fa-3x" %>
         </div>
     </nav>
-          <%#= link_to "NEW RECEIPT", report_receipts_path  %>
 
-      <%= flash[:notice] || flash[:alert] %>
+      <%#= flash[:notice] || flash[:alert] %>
       <%= yield %>
-
-
+    
     <script>
     // Sidebar Action
     $("#menu-close").click(function(e) {
