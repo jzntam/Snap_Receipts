@@ -1,3 +1,14 @@
 <div id="<%= dom_id(@report) %>">
   <div id="map" style='height: 400px; width: 100%;' class="col-md-7"></div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw generate_markers(@locations) %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });
+</script>

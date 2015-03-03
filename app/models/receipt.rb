@@ -11,7 +11,7 @@ class Receipt < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   before_create :image_data #, :if => lambda {|r| r.image }
-  before_update :set_tax, :set_sub_total
+  before_update :set_tax, :set_sub_total, :geocode
 
   def image_data
     return true unless self.image.file
