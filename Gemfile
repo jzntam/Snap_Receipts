@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ 
 gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -12,7 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg'
 
 gem 'tesseract-ocr'
-gem 'rtesseract', '~> 1.2.4'
+# gem 'rtesseract', '~> 1.2.4'
 
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
@@ -21,7 +21,7 @@ gem 'rails_12factor', group: :production
 
 gem 'simple_form'
 gem "font-awesome-rails"
-gem "omniauth-google-oauth2", "~> 0.2.1"
+# gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
