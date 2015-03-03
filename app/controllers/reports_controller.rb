@@ -31,10 +31,10 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     respond_to do |format|
       if @report.update(report_params)
-        format.html {redirect_to reports_path}
+        format.html {redirect_to reports_path, notice: "Report Updated"}
         format.js {render}
       else
-        format.html {redirect_to reports_path}
+        format.html {redirect_to reports_path, notice: "Invalid update parameters"}
         format.js {render}
       end
     end

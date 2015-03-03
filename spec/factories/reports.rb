@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :report do
-    title Faker::Company.bs
+    sequence(:title) {|n| "#{Faker::Company.bs}-#{n}"}
     description Faker::Lorem.paragraph
   end
 end
