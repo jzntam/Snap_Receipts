@@ -24,7 +24,7 @@ class ReceiptsController < ApplicationController
         format.html {redirect_to @report, notice: "Receipt Created"}
         format.js {render}
       else
-        format.html {redirect_to :back, notice: "No worky"}
+        format.html {redirect_to @report, notice: "No worky"}
         format.js {render}
         # render :new
       end

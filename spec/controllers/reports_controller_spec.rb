@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ReportsController, type: :controller do
   let(:report) {create(:report)}
   let(:report_1) {create(:report)}
+  let(:receipt) {create(:receipt, report: report)}
 
   describe "#index" do
     it "renders a new template" do
@@ -17,7 +18,7 @@ RSpec.describe ReportsController, type: :controller do
       expect(response.code).to eq("200")
     end
 
-    # it "assigns reports variable for created reports" do
+    # it "assigns reports variable for all created reports" do
     #   report
     #   report_1
     #   get :index
@@ -109,8 +110,8 @@ RSpec.describe ReportsController, type: :controller do
     end    
 
     # it "assigns a new receipt instance" do
-    #   report = FactoryGirl.create(:receipt)
-    #   get :show
+    #   # report = FactoryGirl.create(:receipt)
+    #   get :show, {:report_id => report.id}
     #   expect(assigns(:receipt)).to be_a_new(Receipt)
     # end
   end # end of show
