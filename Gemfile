@@ -31,6 +31,9 @@ gem 'jquery-ui-rails'
 gem "selectize-rails"
 gem "animate-rails"
 
+gem "rspec-rails"
+gem 'factory_girl_rails'
+
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
