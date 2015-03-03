@@ -11,6 +11,7 @@ class Receipt < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   before_create :image_data #, :if => lambda {|r| r.image }
+  before_update :set_tax, :set_sub_total, :geocode
 
   def image_data
     return true unless self.image.file
@@ -31,16 +32,20 @@ class Receipt < ActiveRecord::Base
     if self.tax_total == nil
       set_tax
     end
+    set_sub_total
+  end
+
+  def set_sub_total
     self.sub_total = self.total - self.tax_total
   end
 
   def set_tax
     if self.tax_type == "GST"
-      self.tax_total = (self.total - (self.total / 1.05))
+      self.tax_total = (self.total - (self.total / 1.05)).round(2)
     elsif self.tax_type == "PST"
-      self.tax_total = (self.total - (self.total / 1.07))
+      self.tax_total = (self.total - (self.total / 1.07)).round(2)
     elsif self.tax_type == "GST & PST"
-      self.tax_total = (self.total - (self.total / 1.12))
+      self.tax_total = (self.total - (self.total / 1.12)).round(2)
     else
       self.tax_total = 0
     end

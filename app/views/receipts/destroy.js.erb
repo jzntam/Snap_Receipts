@@ -1,3 +1,5 @@
 $('#myModal_<%= @receipt.id %>').modal("hide");
 setTimeout(function(){
   $('#<%= dom_id(@receipt) %>').addClass('animated bounceOutDown').fadeOut(1000)}, 600);
+$("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>");
+

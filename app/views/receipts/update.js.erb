@@ -2,3 +2,5 @@
 $('#myModal_<%= @receipt.id %>').modal("hide");
 $('#<%= dom_id(@receipt) %>').remove()
 $(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");
+$("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>");
+$("#map-container").html("<%= j render partial: '/reports/map', locals: {location: @location} %>");
