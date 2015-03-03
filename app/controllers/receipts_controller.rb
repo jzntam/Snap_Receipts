@@ -52,6 +52,7 @@ class ReceiptsController < ApplicationController
   end
 
   def destroy
+    @report = Report.find(params[:report_id])
     @receipt = Receipt.find params[:id]
     respond_to do |format|
       if @receipt.destroy
