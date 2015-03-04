@@ -1,4 +1,5 @@
 <div id="edit_report_<%= report.id %>" class="form-box">
+<div id="flash_edit_<%= report.id %>"></div>
   <%= simple_form_for report, remote: true do |f| %>
     <div class="form-group">
       <%= f.input :title, class: "form-control" %>

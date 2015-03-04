@@ -27,7 +27,7 @@ class ReceiptsController < ApplicationController
         format.html {redirect_to @report, notice: "Receipt Created"}
         format.js {render}
       else
-        format.html {redirect_to :back, notice: "No worky"}
+        format.html {redirect_to @report, notice: "No worky"}
         format.js {render}
         # render :new
       end
@@ -46,10 +46,10 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.find params[:id]
     respond_to do |format|
       if @receipt.update(receipt_params)
-        format.html {redirect_to report_path(@receipt.report_id)}
+        format.html {redirect_to report_path(@receipt.report_id), notice: "Receipt Updated"}
         format.js {render}
       else
-        format.html {redirect_to report_path(@receipt.report_id)}
+        format.html {redirect_to report_path(@receipt.report_id), notice: "Error not Updated"}
         format.js {render}
       end
     end
@@ -61,10 +61,10 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.find params[:id]
     respond_to do |format|
       if @receipt.destroy
-        format.html {redirect_to report_path(@receipt.report_id)}
+        format.html {redirect_to report_path(@receipt.report_id), notice: "Receipt Deleted"}
         format.js {render}
       else
-        format.html {redirect_to report_path(@receipt.report_id)}
+        format.html {redirect_to report_path(@receipt.report_id), notice: "Receipt not Deleted"}
         format.js {render}
       end
     end

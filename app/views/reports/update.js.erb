@@ -1,3 +1,8 @@
-$("#snap_<%= dom_id(@report) %>").hide();
-var party = $("<%= j render partial: '/reports/report', locals: {report: @report} %>").fadeIn().addClass( "animated fadeInLeft" );
-$(".reports").prepend(party);
+$("#flash_edit_<%= @report.id %>").html('');
+<% if @report.errors.any? %>
+  $("#flash_edit_<%= @report.id %>").prepend('<div class="alert alert-danger animated bounceInDown"><h4><%= @report.errors.full_messages.join(' & ') %></h4></div>');
+<% else %>
+  $("#snap_<%= dom_id(@report) %>").hide();
+  var party = $("<%= j render partial: '/reports/report', locals: {report: @report} %>").fadeIn().addClass( "animated fadeInLeft" );
+  $(".reports").prepend(party);
+<% end %>

@@ -1,6 +1,11 @@
 // $('#myModal_<%= @receipt.id %>').fadeOut("fast");
-$('#myModal_<%= @receipt.id %>').modal("hide");
-$('#<%= dom_id(@receipt) %>').remove()
-$(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");
-$("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>");
-$("#map-container").html("<%= j render partial: '/reports/map', locals: {location: @location} %>");
+$("#edit-receipt-flash").html('');
+<% if @receipt.errors.any? %>
+  $("#edit-receipt-flash").prepend('<div class="alert alert-danger animated bounceInDown"><h4><%= @receipt.errors.full_messages.join(' & ') %></h4></div>');
+<% else %>
+  $('#myModal_<%= @receipt.id %>').modal("hide");
+  $('#<%= dom_id(@receipt) %>').remove()
+  $(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");
+  $("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>");
+  $("#map-container").html("<%= j render partial: '/reports/map', locals: {location: @location} %>");
+<% end %>
