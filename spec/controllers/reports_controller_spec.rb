@@ -57,7 +57,7 @@ RSpec.describe ReportsController, type: :controller do
         expect(response.code).to eq("302")
       end
 
-      # it { should render_template(:format => 'js', :partial => '_report.html.erb') }
+      # it { should render_template(:partial => '_report') }
 
       # it "renders a new template" do
       #   valid_request
@@ -107,7 +107,7 @@ RSpec.describe ReportsController, type: :controller do
     end
     it "has a 200 status code for a good get response" do
       expect(response.code).to eq("200")
-    end    
+    end
     it "assigns a new receipt instance" do
       # receipt = FactoryGirl.create(:receipt)
       get :show, id: report.id,receipt_id: receipt.id

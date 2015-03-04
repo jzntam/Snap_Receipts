@@ -6,6 +6,10 @@ $("#edit-receipt-flash").html('');
   $('#myModal_<%= @receipt.id %>').modal("hide");
   $('#<%= dom_id(@receipt) %>').remove()
   $(".receipt-loop-container").prepend("<%= j render partial: '/receipts/receipt', locals: {report: @report, receipt: @receipt} %>");
-  $("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>");
-  $("#map-container").html("<%= j render partial: '/reports/map', locals: {location: @location} %>");
+  $("#receipt-summary-container").html("<%= j render partial: '/receipts/summary', locals: {report: @report} %>").addClass("animated fadeInDownBig");
+  $("#map-container").html("<%= j render partial: '/reports/map', locals: {location: @location} %>").addClass("animated fadeInRightBig");
+  setTimeout(function(){
+    $("#receipt-summary-container").removeClass("animated fadeInDownBig");
+    $("#map-container").removeClass("animated fadeInRightBig");
+  }, 3000);
 <% end %>
