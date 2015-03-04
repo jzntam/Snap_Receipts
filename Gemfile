@@ -32,13 +32,14 @@ gem "selectize-rails"
 gem "animate-rails"
 
 gem "rspec-rails"
-gem 'factory_girl_rails'
 
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'shoulda', '~> 3.5.0'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'byebug'

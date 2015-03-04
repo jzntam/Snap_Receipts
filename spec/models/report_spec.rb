@@ -27,5 +27,13 @@ RSpec.describe Report, type: :model do
     end
   end
 
+  describe 'association' do
+    it { should have_many(:receipts) }
+  end
+
+  describe 'column_specification' do
+    it { should have_db_column(:title).of_type(:string).with_options(presence: true, uniqueness: true) }
+    it { should have_db_column(:description).of_type(:text) }
+  end
 
 end
