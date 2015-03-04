@@ -1,0 +1,22 @@
+<h2>Advanced Search</h2>
+
+<%= form_for @search do |f| %>
+  <div class="field">
+    <br> Try 
+    <%= f.label 'Searching for Keyword in Business name ' %>
+    <%= f.text_field :keyword %>
+    <br> And
+    <%= f.label 'Excluding Keyword from Business name' %>
+    <%= f.text_field :not_name %>
+    <br> Find receipts by
+    <%= f.label 'Category' %>
+    <%#= f.text_field :category %>
+    <%#= f.collection_select(:category, options_for_select([["Auto"], ["Entertainment"], "Office", "Travel"])) %>
+    <%= select_tag("search[category]", options_for_select(["", "Auto", "Entertainment", "Office", "Travel"])) %>
+    <br> Not 
+    <%= f.label 'datetime' %>
+    <%= f.date_field :between %>
+  </div>
+
+  <div class="Actions"><%= f.submit "Advanced Search" %></div>
+  <% end %>

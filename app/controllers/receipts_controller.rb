@@ -3,6 +3,9 @@ class ReceiptsController < ApplicationController
   def index
     @receipts = Receipt.all
     @report = Report.find(params[:report_id])
+    #@entire_receipts = Receipt.all
+    @receipts = @receipts.search(params[:search]) if params[:search].present?
+    @receipts = @receipts.text_search(params[:query]) if params[:query].present?
     respond_to do |format|
       format.html
       format.csv { send_data @receipts.to_csv }

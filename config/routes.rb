@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #get 'new#search' => 'searches#new'
+
+  #get 'searches#show'
+  resources :searches
   resources :reports do
     resources :receipts
   end

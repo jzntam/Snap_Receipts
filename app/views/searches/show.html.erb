@@ -1,0 +1,9 @@
+<h1> Search Results</h1>
+
+<h1>Searching for Keyword in Business name: <%= @search.keyword %>, Excluding Keyword from Business name: <%= @search.not_name %>, Keyword: <%#= @search.title %>, <br> Excluding Keyword: <%= @search.between %></h1>
+<h1><% @receipts.each do |r| %></h1>
+  <%= r.business_name %>
+  <%#= r.between %>
+  <hr>
+<% end %>
+<br>
