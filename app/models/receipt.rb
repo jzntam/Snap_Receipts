@@ -23,10 +23,15 @@ class Receipt < ActiveRecord::Base
     my_var = e.text_for(self.image.file.file)
     first_line = my_var.lines.detect {|line| line =~ /[\w ]{5}/ }.downcase.titleize
     ocr_data = /(\b^[Tt][OoD][Tt][AaRH])\w+\s+([$]?|[$]?\s+)([\d]+.\d\d)/.match(my_var)
+    ocr_2 = /(\b^[Tt][Oo][Tt])\w+.+\s+.([$]?|[$]?\s+)([\d]+.\d\d)/.match(my_var)
     tax_data = /(\b[Tt][Aa]|[Gg][Ss]|[Pp][Ss]).+\s+.([\d]*.\d\d)/.match(my_var)
     self.business_name = first_line.strip
     if ocr_data == nil
-      self.total = 0
+      if ocr_2.present?
+        self.total = ocr_2[-1]
+      else
+        self.total = 0
+      end
     else
       self.total = ocr_data[-1]
     end
