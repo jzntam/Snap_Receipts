@@ -2,6 +2,7 @@ class Receipt < ActiveRecord::Base
   # validates :business_name, presence: true
   validates :image, presence: true
   validates :tax_type, presence: true
+  validates :total, presence: true, on: :update
   belongs_to :report
 
   geocoded_by :address

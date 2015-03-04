@@ -1,3 +1,4 @@
+<div id="edit-receipt-flash"></div>
 <% receipt = defined?(receipt) ? receipt : @receipt %>
 <%= form_for [@report, receipt], remote: true do |f| %>
   <%= f.label :business_name %><br>

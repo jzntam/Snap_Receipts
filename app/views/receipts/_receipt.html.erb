@@ -1,4 +1,4 @@
-    <div id="<%= dom_id(receipt) %>" class="receipt-box dev-test">
+    <div id="<%= dom_id(receipt) %>" class="receipt-box">
       <div class="absolute-center">
       <h5><%= receipt.business_name %></h5>
         <%= link_to image_tag(receipt.image_url(:thumb)), "javascript:void(0)", data: { toggle: "modal", target: "#myModal_#{receipt.id}"} %>
