@@ -6,7 +6,7 @@ RSpec.describe ReportsController, type: :controller do
   let(:receipt) {create(:receipt, report: report)}
 
   describe "#index" do
-    it "renders a new template" do
+    it "renders a index template" do
       get :index
       expect(response).to render_template(:index)
     end
@@ -18,12 +18,12 @@ RSpec.describe ReportsController, type: :controller do
       expect(response.code).to eq("200")
     end
 
-    # it "assigns reports variable for all created reports" do
-    #   report
-    #   report_1
-    #   get :index
-    #   expect(assigns(:reports)).to eq([report, report_1])
-    # end
+    it "assigns reports variable for all created reports" do
+      report
+      report_1
+      get :index
+      expect(assigns(:reports)).to eq([report_1, report])
+    end
 
     # it "say what?" do
     #   xhr :get, :index, :format => 'js'
@@ -108,12 +108,11 @@ RSpec.describe ReportsController, type: :controller do
     it "has a 200 status code for a good get response" do
       expect(response.code).to eq("200")
     end    
-
-    # it "assigns a new receipt instance" do
-    #   # report = FactoryGirl.create(:receipt)
-    #   get :show, {:report_id => report.id}
-    #   expect(assigns(:receipt)).to be_a_new(Receipt)
-    # end
+    it "assigns a new receipt instance" do
+      # receipt = FactoryGirl.create(:receipt)
+      get :show, id: report.id,receipt_id: receipt.id
+      expect(assigns(:receipt)).to be_a_new(Receipt)
+    end
   end # end of show
 
   describe "#edit" do
