@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'searches/new'
+  #get 'new#search' => 'searches#new'
 
-  get 'searches/show'
-
+  #get 'searches#show'
+  resources :searches
   resources :reports do
     resources :receipts
   end

@@ -62,13 +62,22 @@ class Receipt < ActiveRecord::Base
 
   def self.not_time(parts)
       if parts
-        where.not("title @@ :s", s: parts )
+        where.not("business_name @@ :s", s: parts )
       end
   end
   
-  def self.time_search(words)
+  def self.cat_search(words)
     if words
-      where("title @@ :s", s: words )
+      #where("title @@ :s", s: words )
+      where("business_name @@ :s", s: words )
+      where("category @@ :s", s: words )
+    end
+  end
+
+   def self.time_search(time)
+    if time
+      #SELECT "receipts".* FROM "receipts" WHERE("created_at >= ?", time)
+      where("created_at >= ?", time )
     end
   end
 
