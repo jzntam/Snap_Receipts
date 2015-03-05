@@ -25,8 +25,17 @@
           <%= link_to "My Reports", reports_path %>
         </li>
         <li>
-          <%= link_to "My Receipts", reports_path %>
+          <%= link_to "Search", new_search_path %>
         </li>
+<!--         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 20px">Search<span class="caret"></span></a>
+          <ul class="dropdown-menu login-menu" role="menu">
+            <%#= link_to "Advanced Search", new_search_path %>
+          <div class="asf-container">
+            <%= render "searches/form" %>
+          </div>
+          </ul>
+        </li> -->
         <li>
           <%= link_to "How it Works", root_path( anchor: "how-it-works") %>
         </li>

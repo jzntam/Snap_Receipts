@@ -1,22 +1,33 @@
-<h2>Advanced Search</h2>
-
-<%= form_for @search do |f| %>
-  <div class="field">
-    <br> Try 
-    <%= f.label 'Searching for Keyword in Business name ' %>
-    <%= f.text_field :keyword %>
-    <br> And
-    <%= f.label 'Excluding Keyword from Business name' %>
-    <%= f.text_field :not_name %>
-    <br> Find receipts by
-    <%= f.label 'Category' %>
-    <%#= f.text_field :category %>
-    <%#= f.collection_select(:category, options_for_select([["Auto"], ["Entertainment"], "Office", "Travel"])) %>
-    <%= select_tag("search[category]", options_for_select([nil, "Auto", "Entertainment", "Office", "Travel"])) %>
-    <br> Not 
-    <%= f.label 'datetime' %>
-    <%= f.date_field :between %>
+<div class="new-search-form">
+  <div class="col-md-12">
+    <%= form_for @search do |f| %>
+      <h2>Advanced Search</h2>
+      <div class="field">
+        <div class="col-md-12">
+        <%= f.label 'Try Searching for Keyword in Business name ' %>
+        <%= f.text_field :keyword, class: "form-control" %><br>
+        </div>
+        <br>
+        <div class="col-md-12">
+        <%= f.label 'And Excluding Keyword from Business name' %>
+        <%= f.text_field :not_name, class: "form-control" %><br>
+        </div>
+        <br>
+        <div class="col-md-12">
+        <%= f.label 'Find receipts by Category' %><br>
+        <%#= f.text_field :category %>
+        <%#= f.collection_select(:category, options_for_select([["Auto"], ["Entertainment"], "Office", "Travel"])) %>
+        <%= select_tag("search[category]", options_for_select([nil, "Auto", "Entertainment", "Office", "Travel"])) %><br>
+        </div>
+        <br>
+        <div class="col-md-12">
+        <br>
+        <%= f.label 'Not Date Time' %>
+        <%= f.date_field :between, class: "form-control" %><br>
+        </div>
+        <br>
+      </div>
+      <div class="Actions"><%= f.submit "Advanced Search", class: "btn btn-primary" %></div>
+    <% end %>
   </div>
-
-  <div class="Actions"><%= f.submit "Advanced Search" %></div>
-  <% end %>
+</div>

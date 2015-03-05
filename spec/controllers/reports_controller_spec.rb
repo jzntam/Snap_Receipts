@@ -26,8 +26,8 @@ RSpec.describe ReportsController, type: :controller do
     end
 
     # it "say what?" do
-    #   xhr :get, :index, :format => 'js'
-    #   expect(assigns(:report)).to render_template( :partial => '_report')
+    #   get :index, :format => 'js'
+    #   expect(response).to render_template( :partial => '_report.html.erb')
     # end
 
   end # end of index

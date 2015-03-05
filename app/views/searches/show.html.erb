@@ -1,9 +1,12 @@
-<h1> Search Results</h1>
-
-<h1>Searching for Keyword in Business name: <%= @search.keyword %>, Excluding Keyword from Business name: <%= @search.not_name %>, Keyword: <%#= @search.title %>, <br> Excluding Keyword: <%= @search.between %></h1>
-<h1><% @receipts.each do |r| %></h1>
-  <%= r.business_name %>
-  <%#= r.between %>
-  <hr>
-<% end %>
-<br>
+<div class="search-results">
+  <h1> Search Results</h1>
+  <p>Searching for Keyword in Business name: <strong><%= @search.keyword %></strong></p><p>Excluding Keyword from Business name: <strong><%= @search.not_name %></strong></p><!-- Keyword: --> <%#= @search.title %> 
+  <p>Excluding Keyword: <%= @search.between %></p>
+  <br>
+  <% @receipts.each do |r| %>
+    <div class="well well-sm">
+      <h4><%= link_to "Link to #{r.business_name}", report_path(r.report_id) %></h4>
+    </div>
+    <%#= r.between %>
+  <% end %>
+</div>

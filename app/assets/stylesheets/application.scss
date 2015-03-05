@@ -224,4 +224,34 @@ a:hover.edit-icon, a:active.edit-icon {
   border: 1px solid orange;
 }
 
+.asf-container {
+  left: 500px;
+  z-index: 2000;
+}
+
+.adv-search-form {
+  width: 250px;
+  text-align: left;
+  .col-md-12 {
+    padding: 0;
+  }
+  label {
+    text-align: left;
+  }
+  input {
+    border-radius: 0px;
+  }
+}
+
+.new-search-form {
+  width: 500px;
+}
+
+.search-results {
+  padding: 20px;
+  width: 600px;
+  p {
+    font-size: 16px;
+  }
+}
 
