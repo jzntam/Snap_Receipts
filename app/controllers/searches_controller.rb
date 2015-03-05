@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @receipts = Receipt.where(nil)
-    @receipts = @receipts.time_search(@search.keyword) if @search.keyword.present?
+    @receipts = @receipts.key_search(@search.keyword) if @search.keyword.present?
     @receipts = @receipts.not_time(@search.not_name) if @search.not_name.present?
     @receipts = @receipts.cat_search(@search.category) if @search.category.present?
     @receipts = @receipts.time_search(@search.between) if @search.between.present?

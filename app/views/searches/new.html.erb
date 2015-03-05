@@ -12,7 +12,7 @@
     <%= f.label 'Category' %>
     <%#= f.text_field :category %>
     <%#= f.collection_select(:category, options_for_select([["Auto"], ["Entertainment"], "Office", "Travel"])) %>
-    <%= select_tag("search[category]", options_for_select(["", "Auto", "Entertainment", "Office", "Travel"])) %>
+    <%= select_tag("search[category]", options_for_select([nil, "Auto", "Entertainment", "Office", "Travel"])) %>
     <br> Not 
     <%= f.label 'datetime' %>
     <%= f.date_field :between %>

@@ -72,11 +72,10 @@ class Receipt < ActiveRecord::Base
       end
   end
   
-  def self.cat_search(words)
+  def self.key_search(words)
     if words
       #where("title @@ :s", s: words )
       where("business_name @@ :s", s: words )
-      where("category @@ :s", s: words )
     end
   end
 
@@ -84,6 +83,13 @@ class Receipt < ActiveRecord::Base
     if time
       #SELECT "receipts".* FROM "receipts" WHERE("created_at >= ?", time)
       where("created_at >= ?", time )
+    end
+  end
+
+   def self.cat_search(house)
+    if house
+      #SELECT "receipts".* FROM "receipts" WHERE("created_at >= ?", time)
+      where("category @@ :s", s: house )
     end
   end
 
