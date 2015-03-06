@@ -73,6 +73,7 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     excon (0.44.2)
     execjs (2.3.0)
@@ -290,6 +291,11 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slop (3.6.0)
     spoon (0.0.4)
       ffi
@@ -359,6 +365,7 @@ DEPENDENCIES
   selectize-rails
   shoulda (~> 3.5.0)
   simple_form
+  simplecov
   spring
   tesseract-ocr
   turbolinks

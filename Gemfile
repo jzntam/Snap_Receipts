@@ -32,6 +32,7 @@ gem "selectize-rails"
 gem "animate-rails"
 
 gem "rspec-rails"
+gem 'simplecov', :require => false, :group => :test
 
 gem 'hirb'
 gem 'awesome_print'
