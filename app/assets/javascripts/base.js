@@ -57,4 +57,12 @@ $(document).ready(function() {
       .toggleClass("btn-dark", toggled);
   });
 
+  // adding form control to dropdown and edit receipt form
+  $(".edit_receipt input#receipt_sub_total").addClass('form-control').css('width', "190px")
+  $(".edit_receipt select#receipt_category").addClass('form-control');
+  $(".edit_receipt select#receipt_tax_type").addClass('form-control');
+  $(".edit_receipt input#receipt_tax_total").addClass('form-control');
+  $(".edit_receipt select#receipt_tax_type").css('width', "150px").css('display', 'inline-block');
+  $(".edit_receipt input#receipt_tax_total").css('width', "190px").css('display', 'inline-block');
+  $(".edit_receipt input#receipt_total").addClass('form-control').css('width', "190px")
 }); //end of document ready
