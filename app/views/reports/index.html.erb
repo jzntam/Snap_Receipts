@@ -16,7 +16,7 @@
 <div class="container-fluid">
   <div class="container">
     <br>
-    <div id="sortable" class="reports">
+    <div id="all_reports" class="reports">
       <% @reports.each do |report| %>
         <%= render "reports/report", report: report %>
       <% end %>
@@ -26,13 +26,21 @@
 
 <script>
   // Drag and drop report sorting
+  // $(document).ready(function() {
+  //   $(function() {
+  //     $( "#all_reports" ).sortable({
+  //       placeholder: "ui-state-highlight"
+  //     });
+  //     $( "#all_reports" ).disableSelection();
+  //   });
+  // }); //end of document ready
   $(document).ready(function() {
-    $(function() {
-      $( "#sortable" ).sortable({
-        placeholder: "ui-state-highlight"
-      });
-      $( "#sortable" ).disableSelection();
+    $('#all_reports').sortable({
+      update: function() {
+        var ids = $(this).sortable('serialize');
+        $.post('/reports/sort', ids);
+      }
     });
-  }); //end of document ready
+  });
 </script>
 

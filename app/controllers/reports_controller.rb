@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   def index
     @search = Search.new
-    @reports = Report.all.order("created_at DESC")
+    @reports = Report.order(:position)
     @report = Report.new
   end
 
@@ -53,6 +53,13 @@ class ReportsController < ApplicationController
         format.html {redirect_to reports_path, notice: "Unable to Delete"}
       end
     end
+  end
+
+  def sort
+    params[:snap_report].each_with_index do |id, index|
+      Report.find(id).update!(position: index + 1)
+    end
+    head :ok
   end
 
   private

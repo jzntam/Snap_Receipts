@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :searches
   resources :reports do
     resources :receipts
+    post :sort, on: :collection
   end
 
   resources :receipt_locations, only: :index

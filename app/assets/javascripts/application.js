@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require selectize
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
+//= require jquery-ui
 //= require_tree .
