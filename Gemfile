@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg'
+gem 'bcrypt'
 
 gem 'tesseract-ocr'
 # gem 'rtesseract', '~> 1.2.4'
@@ -32,7 +33,7 @@ gem "selectize-rails"
 gem "animate-rails"
 
 gem "rspec-rails"
-gem 'simplecov', :require => false, :group => :test
+# gem 'simplecov', :require => false, :group => :test
 
 gem 'hirb'
 gem 'awesome_print'

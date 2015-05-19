@@ -44,6 +44,7 @@ GEM
       execjs
       json
     awesome_print (1.6.1)
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.4.1)
@@ -70,7 +71,6 @@ GEM
     columnize (0.9.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
-    docile (1.1.5)
     erubis (2.7.0)
     excon (0.45.3)
     execjs (2.5.2)
@@ -306,11 +306,6 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    simplecov (0.10.0)
-      docile (~> 1.1.0)
-      json (~> 1.8)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
     slop (3.6.0)
     spoon (0.0.4)
       ffi
@@ -349,6 +344,7 @@ PLATFORMS
 DEPENDENCIES
   animate-rails
   awesome_print
+  bcrypt
   bootstrap-sass (~> 3.3.3)
   byebug
   carrierwave
@@ -377,7 +373,6 @@ DEPENDENCIES
   selectize-rails
   shoulda (~> 3.5.0)
   simple_form
-  simplecov
   spring
   tesseract-ocr
   turbolinks
