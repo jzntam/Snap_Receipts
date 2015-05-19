@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
       expect(user.full_name).to eq("#{valid_attributes[:first_name]} #{valid_attributes[:last_name]}")
     end
 
-    it "returns the first name only if only the first name is given" do
+    it "returns the email only if no names are given" do
       user = User.new(valid_attributes(first_name: nil, last_name: nil))
       expect(user.full_name).to eq(valid_attributes[:email])
     end
