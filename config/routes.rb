@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #get 'new#search' => 'searches#new'
   #get 'searches#show'
   resources :users
+  resources :sessions
   resources :searches
   resources :reports do
     resources :receipts

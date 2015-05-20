@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
         expect(flash[:notice]).to be  
       end
 
-      it "redirects to the ideas index page" do
+      it "redirects to the reports index page" do
         valid_request
         expect(response).to redirect_to(reports_path)
       end
