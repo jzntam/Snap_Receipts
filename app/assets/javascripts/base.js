@@ -11,6 +11,23 @@ $(document).ready(function() {
     $("#sidebar-wrapper").toggleClass("active");
   });
 
+  // disable interactive links
+  $('.disabled-link').click(function(event) {
+    event.preventDefault();
+  });
+
+  $(function() {
+    $('#receipt_category').selectize({
+      create: true,
+      sortField: 'text'
+    });
+  });
+
+}); //end of document ready
+
+//Landing Page JS
+$(document).ready(function() {
+
   // Scroll Animation on landing page
   $(function() {
     $('a[href*=#]:not([href=#])').click(function() {
@@ -28,22 +45,6 @@ $(document).ready(function() {
     });
   });
 
-
-  // disable interactive links
-  $('.disabled-link').click(function(event) {
-    event.preventDefault();
-  });
-
-  $(function() {
-    $('#receipt_category').selectize({
-      create: true,
-      sortField: 'text'
-    });
-  });
-
-}); //end of document ready
-
-$(document).ready(function() {
   // Organize Receipts toggle
   var toggled = false;
   $("#org_rec_more").hide();
@@ -86,6 +87,43 @@ $(document).ready(function() {
       .toggleClass("btn-dark", toggled);
   });
 
+}); //end of document ready
+
+//JS for Reports
+$(document).ready(function() {
+  //Drag and Drop Report Sorting
+  $('#all_reports').sortable({
+    update: function() {
+      var ids = $(this).sortable('serialize');
+      $.post('/reports/sort', ids);
+    }
+  });
+
+  // Add new report form toggle
+  var toggled = false;
+
+  var buttonText = {
+    true: "Create a New Report",
+    false: "Hide Form"
+  };
+
+  $("#report-form").hide();
+  $("#new-report").on('click', function(){
+    toggled = !toggled;
+
+    var text = buttonText[!toggled];
+
+    $("#report-form").slideToggle(toggled);
+    $("#new-report").html(text)
+      .toggleClass("btn-primary", !toggled)
+      .toggleClass("btn-dark", toggled);
+  });
+
+}); //end of document ready
+
+
+// Receipt JS
+$(document).ready(function() {
   // adding form control to dropdown and edit receipt form
   $(".edit_receipt input#receipt_sub_total").addClass('form-control').css('width', "190px")
   $(".edit_receipt select#receipt_category").addClass('form-control');
@@ -94,14 +132,4 @@ $(document).ready(function() {
   $(".edit_receipt select#receipt_tax_type").css('width', "150px").css('display', 'inline-block');
   $(".edit_receipt input#receipt_tax_total").css('width', "190px").css('display', 'inline-block');
   $(".edit_receipt input#receipt_total").addClass('form-control').css('width', "190px")
-}); //end of document ready
-
-//Drag and Drop Report Sorting
-$(document).ready(function() {
-  $('#all_reports').sortable({
-    update: function() {
-      var ids = $(this).sortable('serialize');
-      $.post('/reports/sort', ids);
-    }
-  });
 }); //end of document ready

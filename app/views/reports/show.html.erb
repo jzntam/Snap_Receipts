@@ -65,13 +65,3 @@
   </div> <!-- container -->
 </div> <!-- container-fluid -->
 <br><br>
-<script>
-  $(document).ready(function(){
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%= raw generate_markers(@locations) %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-    });
-  });
-</script>
