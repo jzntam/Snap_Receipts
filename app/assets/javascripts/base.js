@@ -124,6 +124,36 @@ $(document).ready(function() {
 
 // Receipt JS
 $(document).ready(function() {
+
+
+  // Add new receipt form toggle. in the report/show view 
+  var toggled = false;
+
+  var buttonText = {
+    true: "Add New Receipt",
+    false: "Hide Form"
+  };
+
+  $("#receipt-form-toggle").hide();
+  $("#new-receipt").on('click', function(){
+    toggled = !toggled;
+
+    var text = buttonText[!toggled];
+
+    $("#receipt-form-toggle").slideToggle(toggled);
+    $("#new-receipt").html(text)
+      .toggleClass("btn-primary", !toggled)
+      .toggleClass("btn-dark", toggled);
+  });
+
+  $(function() {
+    $('#receipt_category').selectize({
+      create: true,
+      sortField: 'text'
+    });
+  });
+
+
   // adding form control to dropdown and edit receipt form
   $(".edit_receipt input#receipt_sub_total").addClass('form-control').css('width', "190px")
   $(".edit_receipt select#receipt_category").addClass('form-control');
