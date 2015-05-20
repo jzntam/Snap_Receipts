@@ -24,23 +24,3 @@
   </div>
 </div>
 
-<script>
-  // Drag and drop report sorting
-  // $(document).ready(function() {
-  //   $(function() {
-  //     $( "#all_reports" ).sortable({
-  //       placeholder: "ui-state-highlight"
-  //     });
-  //     $( "#all_reports" ).disableSelection();
-  //   });
-  // }); //end of document ready
-  $(document).ready(function() {
-    $('#all_reports').sortable({
-      update: function() {
-        var ids = $(this).sortable('serialize');
-        $.post('/reports/sort', ids);
-      }
-    });
-  });
-</script>
-

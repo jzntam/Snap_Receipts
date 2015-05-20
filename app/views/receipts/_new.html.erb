@@ -15,38 +15,3 @@
   </div>
 </div>
 <br>
-
-<script>
-  // Add new receipt form toggle. in the report/show view 
-  $(document).ready(function() {
-    var toggled = false;
-
-    var buttonText = {
-      true: "Add New Receipt",
-      false: "Hide Form"
-    };
-
-    $("#receipt-form-toggle").hide();
-    $("#new-receipt").on('click', function(){
-      toggled = !toggled;
-
-      var text = buttonText[!toggled];
-
-      $("#receipt-form-toggle").slideToggle(toggled);
-      $("#new-receipt").html(text)
-        .toggleClass("btn-primary", !toggled)
-        .toggleClass("btn-dark", toggled);
-    });
-  }); //end of document ready
-
-  $(document).ready(function(){
-    $(function() {
-      $('#receipt_category').selectize({
-        create: true,
-        sortField: 'text'
-      });
-    });
-  });
-
-</script>
-
