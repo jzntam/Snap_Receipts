@@ -22,7 +22,7 @@ RSpec.describe ReportsController, type: :controller do
       report
       report_1
       get :index
-      expect(assigns(:reports)).to eq([report_1, report])
+      expect(assigns(:reports)).to eq([report, report_1])
     end
 
     # it "say what?" do
