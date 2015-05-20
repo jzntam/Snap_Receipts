@@ -70,4 +70,14 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "#edit" do
+    before { get :edit, id: user.id }
+    it "renders the edit template" do
+      expect(response).to render_template(:edit)
+    end
+    it "sets and instance variable with the user whose id is passed" do
+      expect(assigns(:user)).to eq(user)
+    end
+  end
+
 end
