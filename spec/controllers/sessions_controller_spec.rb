@@ -55,5 +55,24 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "#destroy" do
+    def valid_request
+      delete :destroy, id: user.id
+    end
+    it "sets the session id to nil" do
+      request.session[:user_id] = user.id
+      valid_request
+      expect(session[:user_id]).to be_nil
+    end
+    it "sets a flash message" do
+      valid_request
+      expect(flash[:notice]).to be
+    end
+    it "redirects to the root page" do
+      valid_request
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
 end
 
