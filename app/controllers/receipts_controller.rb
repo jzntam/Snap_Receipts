@@ -46,6 +46,7 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.find params[:id]
     respond_to do |format|
       if @receipt.update(receipt_params)
+        address_empty?
         format.html {redirect_to report_path(@receipt.report_id), notice: "Receipt Updated"}
         format.js {render}
       else
@@ -77,4 +78,11 @@ class ReceiptsController < ApplicationController
     params.require(:receipt).permit(:business_name, :image, :sub_total, :tax_total, :total, :tax_type, :category, :comment, :address)
   end
 
+  def address_empty?
+    if @receipt.address == ""
+      @receipt.longitude = nil
+      @receipt.latitude = nil
+      @receipt.save
+    end
+  end
 end

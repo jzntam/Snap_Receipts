@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
   // Sidebar Action
   $("#menu-close").click(function(e) {
     e.preventDefault();
@@ -95,4 +94,14 @@ $(document).ready(function() {
   $(".edit_receipt select#receipt_tax_type").css('width', "150px").css('display', 'inline-block');
   $(".edit_receipt input#receipt_tax_total").css('width', "190px").css('display', 'inline-block');
   $(".edit_receipt input#receipt_total").addClass('form-control').css('width', "190px")
+}); //end of document ready
+
+//Drag and Drop Report Sorting
+$(document).ready(function() {
+  $('#all_reports').sortable({
+    update: function() {
+      var ids = $(this).sortable('serialize');
+      $.post('/reports/sort', ids);
+    }
+  });
 }); //end of document ready
