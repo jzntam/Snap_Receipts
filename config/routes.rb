@@ -2,9 +2,14 @@ Rails.application.routes.draw do
 
   #get 'new#search' => 'searches#new'
   #get 'searches#show'
-  resources :users
-  resources :sessions
+  resources :users, only: [:new, :create, :show, :edit, :update]
+  
+  resources :sessions, only: [:new, :create, :destroy] do
+    delete :destroy, on: :collection
+  end
+
   resources :searches
+  
   resources :reports do
     resources :receipts
     post :sort, on: :collection

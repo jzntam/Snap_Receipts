@@ -80,4 +80,64 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "#update" do
+    context "with account owner signed in" do
+      before { login(user) }
+      def valid_attributes(new_attributes = {})
+        attributes_for(:user).merge(new_attributes)
+      end
+      context "with valid attributes" do
+        before do
+          patch :update, id: user.id, 
+                         user: valid_attributes(first_name: "yoyo") 
+        end
+        it "sets and instance variable with the user whose id is passed" do
+          expect(assigns(:user)).to eq(user)
+        end
+        it "updates the record in the database" do
+          expect(user.reload.first_name).to eq("yoyo")
+        end
+        it "redirect_to the user show page" do
+          expect(response).to redirect_to(user_path(user))
+        end
+        it "sets a flash message" do
+          expect(flash[:notice]).to be
+        end
+      end
+
+      context "with invalid attributes" do
+        before do
+          patch :update, id: user.id, 
+                         user: valid_attributes(email: "") 
+        end
+        it "doesnt update the record in the database" do
+          expect(user.reload.email).to_not eq("")
+        end  
+        it "renders the edit template" do
+          expect(response).to render_template(:edit)
+        end
+        it "sets a flash message" do
+          expect(flash[:alert]).to be
+        end
+      end
+    end
+
+    context "with non-owner user signed in" do
+      before { login(user) }
+      it "raises an error" do
+        expect do
+          patch :update, id: user.id, user: attributes_for(:user_1)
+        end.to raise_error
+      end
+    end
+
+    context "with user not signed in" do
+      it "redirects new session path" do
+        patch :update, id: user.id, user: {first_name: "Bobo"}
+        expect(response).to redirect_to new_session_path
+      end
+    end
+
+  end
+
 end
