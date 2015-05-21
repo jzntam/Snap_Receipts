@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params) && (@user == current_user)
+    @user = current_user
+    if @user.update(user_params)
       redirect_to user_path(@user), notice: "User Successfully Updated!"
     else
       flash[:alert] = "Invalid parameters, please try again."
@@ -35,6 +35,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = current_user
+    if @user.destroy
+      redirect_to root_path, notice: "User account deleted."
+    end
   end
 
   private

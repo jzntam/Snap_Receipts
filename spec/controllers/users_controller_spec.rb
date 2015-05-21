@@ -140,4 +140,42 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
+  describe "#destroy" do
+
+    context "with account owner signed in" do
+      before { login(user) }
+      it "sets and instance variable with the user whose id is passed" do
+        delete :destroy, id: user.id
+        expect(assigns(:user)).to eq(user)  
+      end
+      it "reduces the number of users by 1" do
+        expect { delete :destroy, id: user.id }.to change {User.count}.by(-1)
+      end
+      it "redirects to the root path" do
+        delete :destroy, id: user.id
+        expect(response).to redirect_to root_path 
+      end
+      it "sets a flash message" do
+        delete :destroy, id: user.id
+        expect(flash[:notice]).to be
+      end
+    end
+
+    context "with non-owner user signed in" do
+      before { login(user) }
+      it "raises an error" do
+        expect do
+          delete :destroy, id: user_1.id, user: attributes_for(:user_1)
+        end.to raise_error
+      end
+    end
+
+    context "with user not signed in" do
+      it "redirects new session path" do
+        delete :destroy, id: user.id
+        expect(response).to redirect_to new_session_path
+      end
+    end
+  end
+
 end
