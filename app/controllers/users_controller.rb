@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "landing"
   before_action :authenticate_user!, only: [:update, :destroy]
 
   def new

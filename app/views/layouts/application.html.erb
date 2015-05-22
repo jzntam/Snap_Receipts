@@ -19,9 +19,6 @@
           <%= link_to image_tag('logo.png'), root_path %>
         </li>
         <li>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
           <%= link_to "My Reports", reports_path %>
         </li>
         <li>
@@ -32,20 +29,12 @@
           <ul class="dropdown-menu login-menu" role="menu">
             <%#= link_to "Advanced Search", new_search_path %>
           <div class="asf-container">
-            <%= render "searches/form" %>
+            <%#= render "searches/form" %>
           </div>
           </ul>
         </li> -->
-        <li>
-          <%= link_to "How it Works", root_path( anchor: "how-it-works") %>
-        </li>
-        <li>
-          <%= link_to "About", root_path( anchor: "about") %>
-        </li>
-        <li>
-          <%= link_to "Contact", root_path( anchor: "contact") %>
-        </li>
-
+        <br>
+        <li><%= link_to "Sign Out", sessions_path, method: :delete %></li>
       </ul>
       </div>
         <div class="bar-bottom">

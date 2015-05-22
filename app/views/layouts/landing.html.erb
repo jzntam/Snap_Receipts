@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SnapReceipts</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body style="background-color: white;">
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-xs pull-right toggle"><i class="fa fa-times fa-2x"></i></a>
+        <li class="sidebar-brand">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </li>
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "About", root_path( anchor: "about" ) %>
+        </li>
+        <li>
+          <%= link_to "How it Works", root_path( anchor: "how-it-works" ) %>
+        </li>
+        <li>
+          <%= link_to "Contact", root_path( anchor: "contact" ) %>
+        </li>
+        <br>
+        <li>
+          <%#= link_to "LOG IN", "", data: {toggle: "modal", target: "#signInModal"} %>
+          <%= link_to "LOG IN", new_session_path %>
+        </li>
+        <li>
+          <%= link_to "SIGN UP", new_user_path %>
+        </li>
+      </ul>
+      </div>
+      <div class="bar-bottom">
+        <%= link_to "", "#", class: "fa fa-facebook fa-fw fa-3x" %>
+        <%= link_to "", "#", class: "fa fa-twitter fa-fw fa-3x" %>
+        <%= link_to "", "#", class: "fa fa-github fa-fw fa-3x" %>
+        <%= link_to "", "#", class: "fa fa-linkedin-square fa-fw fa-3x" %>
+      </div>
+    </nav>
+
+    <%= yield %>
+
+  </body>
+</html>
