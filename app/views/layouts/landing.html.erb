@@ -30,11 +30,12 @@
         </li>
         <br>
         <li>
-          <%#= link_to "LOG IN", "", data: {toggle: "modal", target: "#signInModal"} %>
-          <%= link_to "LOG IN", new_session_path %>
+          <%= link_to "LOG IN", "", data: {toggle: "modal", target: "#signInModal"} %>
+          <%#= link_to "LOG IN", new_session_path %>
         </li>
         <li>
-          <%= link_to "SIGN UP", new_user_path %>
+          <%= link_to "SIGN UP", "", data: {toggle: "modal", target: "#signUpModal"} %>
+          <%#= link_to "SIGN UP", new_user_path %>
         </li>
       </ul>
       </div>
@@ -47,6 +48,9 @@
     </nav>
 
     <%= yield %>
+
+    <%= render "sessions/modal" %>
+    <%= render "users/modal" %>
 
   </body>
 </html>

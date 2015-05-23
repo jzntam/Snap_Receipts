@@ -13,7 +13,10 @@ class SessionsController < ApplicationController
     else
       flash[:alert] = "Incorrect Login Info! Have you Signed Up?"
       # redirect_to new_session_path
-      render :new
+      # if @user == nil
+      #   @user = User.new
+      # end
+      redirect_to new_session_path
     end
   end
 
