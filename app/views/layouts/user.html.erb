@@ -47,6 +47,14 @@
       </div>
     </nav>
 
+    <div class="flash-container">
+      <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
+
     <%= yield %>
 
     <%= render "sessions/modal" %>
