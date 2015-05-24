@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @user = User.new
+    @search = Search.new
   end
 
   private

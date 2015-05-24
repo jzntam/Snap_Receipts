@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ReportsController, type: :controller do
-  let(:report) {create(:report)}
-  let(:report_1) {create(:report)}
+  let(:report) {create(:report, user: user)}
+  let(:report_1) {create(:report, user: user)}
   let(:receipt) {create(:receipt, report: report)}
+  let(:user) { create(:user) }
 
   describe "#index" do
+    before { login(user) }
+
     it "renders a index template" do
       get :index
       expect(response).to render_template(:index)
@@ -34,6 +37,7 @@ RSpec.describe ReportsController, type: :controller do
 
   describe "#create" do
     context "with valid parameters" do
+      before { login(user) }
       def valid_request
         post :create, {report: {
                         title: "Valid Report Title",
@@ -67,6 +71,8 @@ RSpec.describe ReportsController, type: :controller do
     end  # end of create with valid params
 
     context "with invalid parameters" do
+      before { login(user) }
+
       def invalid_request
         post :create, {report: {
                         title: nil,
@@ -94,6 +100,7 @@ RSpec.describe ReportsController, type: :controller do
   end # end of create
 
   describe "#show" do
+    before { login(user) }
 
     it "assigns a report instance variable with passed id" do
       report = FactoryGirl.create(:report)
@@ -116,7 +123,8 @@ RSpec.describe ReportsController, type: :controller do
   end # end of show
 
   describe "#edit" do
-    
+    before { login(user) }
+
     it "retrieves the report with passed id and stores it in instance var" do
       report = FactoryGirl.create(:report)
       get :edit, id: report.id
@@ -132,6 +140,8 @@ RSpec.describe ReportsController, type: :controller do
 
   describe "#update" do
     context "with valid request" do
+      before { login(user) }
+
       before do
         patch :update, id: report.id, report: {title: "new title", description: "Woohoo"}
       end
@@ -154,6 +164,7 @@ RSpec.describe ReportsController, type: :controller do
     end # end of update with valid params
 
     context "with invalid params" do
+      before { login(user) }
       before { patch :update, id: report.id, report: {title: "", description: ""} }
 
       it "renders the edit page" do
@@ -177,6 +188,7 @@ RSpec.describe ReportsController, type: :controller do
   describe "#destroy" do
 
     context "Good delete request" do
+      before { login(user) }
       let!(:report) { create(:report) }
 
       it "deletes the report from the database" do
@@ -196,6 +208,7 @@ RSpec.describe ReportsController, type: :controller do
     end # end of destroy with valid params
 
     context "with invalid params" do
+      before { login(user) }
 
       it "deletes the report from the database" do
         expect { delete :destroy, id: report.id }.to_not change { Report.count }
