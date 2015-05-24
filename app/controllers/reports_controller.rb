@@ -1,13 +1,18 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @search = Search.new
-    @reports = Report.order(:position)
+    # @reports = current_user.reports.order(:position, created_at: :desc)
+    # Use the above query if we decide to set position to 1
+    @reports = current_user.reports.order(:position) 
     @report = Report.new
   end
 
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.new(report_params)
     respond_to do |format|
+      @report.position = 0
       if @report.save
         format.html {redirect_to reports_path, notice: "Report Created"}
         format.js {render}
