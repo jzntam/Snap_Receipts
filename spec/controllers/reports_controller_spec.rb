@@ -7,32 +7,43 @@ RSpec.describe ReportsController, type: :controller do
   let(:user) { create(:user) }
 
   describe "#index" do
-    before { login(user) }
+    context "user signed in" do
+      before { login(user) }
 
-    it "renders a index template" do
-      get :index
-      expect(response).to render_template(:index)
-    end
-    it "assigns a new report instance" do
-      get :index
-      expect(assigns(:report)).to be_a_new(Report)
-    end
-    it "has a 200 status code" do
-      expect(response.code).to eq("200")
+      it "renders a index template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
+      it "assigns a new report instance" do
+        get :index
+        expect(assigns(:report)).to be_a_new(Report)
+      end
+      it "assigns a new search instance" do
+        get :index
+        expect(assigns(:search)).to be_a_new(Search)
+      end
+      it "has a 200 status code" do
+        expect(response.code).to eq("200")
+      end
+      it "assigns reports variable for all created reports" do
+        report
+        report_1
+        get :index
+        expect(assigns(:reports)).to eq([report, report_1])
+      end
+
+      # it "say what?" do
+      #   get :index, :format => 'js'
+      #   expect(response).to render_template( :partial => '_report.html.erb')
+      # end
     end
 
-    it "assigns reports variable for all created reports" do
-      report
-      report_1
-      get :index
-      expect(assigns(:reports)).to eq([report, report_1])
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        get :index
+        expect(response).to redirect_to new_session_path
+      end
     end
-
-    # it "say what?" do
-    #   get :index, :format => 'js'
-    #   expect(response).to render_template( :partial => '_report.html.erb')
-    # end
-
   end # end of index
 
   describe "#create" do
@@ -97,43 +108,73 @@ RSpec.describe ReportsController, type: :controller do
       end
     end # end of create with invalid params
 
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        post :create
+        expect(response).to redirect_to new_session_path
+      end
+    end
+
   end # end of create
 
   describe "#show" do
-    before { login(user) }
+    context "with user signed in" do
+      before { login(user) }
 
-    it "assigns a report instance variable with passed id" do
-      report = FactoryGirl.create(:report)
-      get :show, id: report.id
-      expect(assigns(:report)).to eq(report)
+      it "assigns a new search instance" do
+        get :show, id: report.id
+        expect(assigns(:search)).to be_a_new(Search)
+      end
+      it "assigns a report instance variable with passed id" do
+        report = FactoryGirl.create(:report)
+        get :show, id: report.id
+        expect(assigns(:report)).to eq(report)
+      end
+      it "renders the show template" do
+        report = FactoryGirl.create(:report)
+        get :show, id: report.id
+        expect(response).to render_template(:show)
+      end
+      it "has a 200 status code for a good get response" do
+        expect(response.code).to eq("200")
+      end
+      it "assigns a new receipt instance" do
+        # receipt = FactoryGirl.create(:receipt)
+        get :show, id: report.id,receipt_id: receipt.id
+        expect(assigns(:receipt)).to be_a_new(Receipt)
+      end
     end
-    it "renders the show template" do
-      report = FactoryGirl.create(:report)
-      get :show, id: report.id
-      expect(response).to render_template(:show)
+
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        get :show, id: report.id
+        expect(response).to redirect_to new_session_path
+      end
     end
-    it "has a 200 status code for a good get response" do
-      expect(response.code).to eq("200")
-    end
-    it "assigns a new receipt instance" do
-      # receipt = FactoryGirl.create(:receipt)
-      get :show, id: report.id,receipt_id: receipt.id
-      expect(assigns(:receipt)).to be_a_new(Receipt)
-    end
+
   end # end of show
 
   describe "#edit" do
-    before { login(user) }
+    context "with user signed in" do
+      before { login(user) }
 
-    it "retrieves the report with passed id and stores it in instance var" do
-      report = FactoryGirl.create(:report)
-      get :edit, id: report.id
-      expect(assigns(:report)).to eq(report)
+      it "retrieves the report with passed id and stores it in instance var" do
+        report = FactoryGirl.create(:report)
+        get :edit, id: report.id
+        expect(assigns(:report)).to eq(report)
+      end
+      
+      it "renders the edit template" do
+        get :edit, id: report.id
+        expect(response).to render_template(:edit)
+      end      
     end
-    
-    it "renders the edit template" do
-      get :edit, id: report.id
-      expect(response).to render_template(:edit)
+
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        get :edit, id: report.id
+        expect(response).to redirect_to new_session_path
+      end
     end
 
   end # end of edit
@@ -183,6 +224,13 @@ RSpec.describe ReportsController, type: :controller do
         expect(flash[:notice]).to be
       end
     end # end of update with INvalid params
+
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        patch :update, id: report.id, report: {title: "new title", description: "Woohoo"}
+        expect(response).to redirect_to new_session_path
+      end
+    end
   end # end of  update with valid params
 
   describe "#destroy" do
@@ -226,6 +274,13 @@ RSpec.describe ReportsController, type: :controller do
       end
 
     end # end of destroy with INvalid params
+
+    context "user not signed in" do
+      it "redirects to sign in page" do
+        delete :destroy, id: report.id
+        expect(response).to redirect_to new_session_path
+      end
+    end
 
   end # end of destroy
 
