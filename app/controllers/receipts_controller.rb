@@ -1,5 +1,6 @@
 class ReceiptsController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def index
     @receipts = Receipt.all
     @report = Report.find(params[:report_id])

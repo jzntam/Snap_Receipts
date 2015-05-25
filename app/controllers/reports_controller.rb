@@ -24,10 +24,15 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @search = Search.new
-    @locations = Receipt.near([49.2314389, -123.0657958], 20, units: :km)
     @report = Report.find(params[:id])
-    @receipt = Receipt.new
+    if @report.user != current_user
+      flash[:alert] = "Access Denied. You can only view receipts that belong to you."
+      redirect_to reports_path
+    else
+      @search = Search.new
+      @locations = Receipt.near([49.2314389, -123.0657958], 20, units: :km)
+      @receipt = Receipt.new
+    end
   end
 
   def edit
