@@ -19,6 +19,9 @@
           <%= link_to image_tag('logo.png'), root_path %>
         </li>
         <li>
+          <h3 style="color:white;">Hello <%= current_user.first_name %>!</h3>
+        </li>
+        <li>
           <%= link_to "My Reports", reports_path %>
         </li>
         <li>
@@ -45,8 +48,7 @@
         </div>
     </nav>
 
-      <%#= flash[:notice] || flash[:alert] %>
-      <%= yield %>
+    <%= yield %>
     
   </body>
 </html>

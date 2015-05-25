@@ -1,5 +1,6 @@
 class ReceiptsController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def index
     @receipts = Receipt.all
     @report = Report.find(params[:report_id])
@@ -8,8 +9,8 @@ class ReceiptsController < ApplicationController
     @receipts = @receipts.text_search(params[:query]) if params[:query].present?
     respond_to do |format|
       format.html
-      format.csv { send_data @receipts.to_csv }
-      format.xls
+      format.csv { send_data @report.receipts.to_csv }
+      format.xls 
     end
   end
   
