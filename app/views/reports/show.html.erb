@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-md-12">
-      <%= link_to "Add New Receipt", "javascript:void(0)", id: "new-receipt", class: "btn btn-primary" %><br><br>
+      <%= link_to "Add New Receipt", "javascript:void(0)", id: "new-receipt", class: "btn btn-primary", style: "margin-left:15px;" %><br><br>
       <%= render partial: "receipts/new", :locals => { :receipt => @receipt } %>
     </div>
   </div>
@@ -38,7 +38,6 @@
           <%= link_to image_tag(receipt.image_url(:thumb)), "#", data: { toggle: "modal", target: "#myModal_#{receipt.id}"}, class: 'disabled-link' %>
         </div>
       </div>
-
       <div class="modal fade" id="myModal_<%= receipt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-box">
           <div class="modal-content">
@@ -64,4 +63,25 @@
     </div> <!-- receipt-loop-container -->
   </div> <!-- container -->
 </div> <!-- container-fluid -->
+
+<!-- Loading Screen -->
+<div class="modal fade loading-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="loader-wrap">
+    <div class="loader">
+      <div class="box">
+        <h2 class="animated pulse infinite">Loading...</h2>
+        <i class="fa fa-5x fa-spinner fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br><br>
+<script type="text/javascript">
+  $('form#new_receipt').submit(function(){
+    $('.loading-modal').modal('show');
+  });
+  $('form#new_receipt').bind('ajax:complete', function() {
+    $('.loading-modal').modal('hide');
+  });
+</script>

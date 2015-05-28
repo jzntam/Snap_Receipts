@@ -1,6 +1,6 @@
 class ReceiptsController < ApplicationController
   before_action :authenticate_user!
-
+  
   def index
     @receipts = Receipt.all
     @report = Report.find(params[:report_id])
@@ -28,7 +28,10 @@ class ReceiptsController < ApplicationController
         format.html {redirect_to @report, notice: "Receipt Created"}
         format.js {render}
       else
-        format.html {redirect_to @report, notice: "No worky"}
+        format.html { 
+          flash.now[:alert] = "Unable to create. Missing image or tax type"
+          redirect_to @report
+        }
         format.js {render}
         # render :new
       end
