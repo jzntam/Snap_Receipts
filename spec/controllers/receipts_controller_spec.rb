@@ -7,7 +7,7 @@ RSpec.describe ReceiptsController, type: :controller do
   let(:receipt_1) {create(:receipt)}
 
   describe "#new" do
-    context "user signed in" do
+    context "with user signed in" do
       before { login(user) }
       it "renders a new template" do
         get :new, {:report_id => report.id}
@@ -21,7 +21,7 @@ RSpec.describe ReceiptsController, type: :controller do
         expect(response.code).to eq("200")
       end
     end
-    context "user not signed in" do
+    context "with user not signed in" do
       it "redirects to sign in page" do
         get :new, {:report_id => report.id}
         expect(response).to redirect_to new_session_path
@@ -37,7 +37,7 @@ RSpec.describe ReceiptsController, type: :controller do
                                   image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'receipt.jpg'))},
                                   report_id: report.id}
       end
-      context "user signed in" do
+      context "with user signed in" do
         before { login(user) }
         it "adds a receipt to the database" do
           expect { valid_request }.to change { Receipt.count }.by(1)
@@ -55,7 +55,7 @@ RSpec.describe ReceiptsController, type: :controller do
           expect(response.code).to eq("302")
         end
       end
-      context "user not signed in" do
+      context "with user not signed in" do
         it "redirects to sign in page" do
           valid_request
           expect(response).to redirect_to new_session_path
@@ -69,7 +69,7 @@ RSpec.describe ReceiptsController, type: :controller do
                                   image: nil},
                                   report_id: report.id}
       end
-      context "user signed in" do
+      context "with user signed in" do
         before { login(user) }
         it "doesn't create a record in the database" do
           expect { invalid_request }.not_to change {Receipt.count}
@@ -87,7 +87,7 @@ RSpec.describe ReceiptsController, type: :controller do
           expect(response.code).to eq("302")
         end
       end
-      context "user not signed in" do
+      context "with user not signed in" do
         it "redirects to sign in page" do
           invalid_request
           expect(response).to redirect_to new_session_path
@@ -97,7 +97,7 @@ RSpec.describe ReceiptsController, type: :controller do
   end #create end
 
   describe "#index" do
-    context "user signed in" do
+    context "with user signed in" do
       before { login(user) }
       it "renders a new template" do
         get :index, {:report_id => report.id}
@@ -119,7 +119,7 @@ RSpec.describe ReceiptsController, type: :controller do
         expect(response.code).to eq("200")
       end
     end
-    context "user not signed in" do
+    context "with user not signed in" do
       it "redirects to sign in page" do
         get :index, {:report_id => report.id}
         expect(response).to redirect_to new_session_path
@@ -128,7 +128,7 @@ RSpec.describe ReceiptsController, type: :controller do
   end # end of index
 
   describe "#edit" do
-    context "user signed in" do
+    context "with user signed in" do
       before { login(user) }
       it "retrieves the receipt with passed id and stores it in instance var" do
         # receipt = FactoryGirl.create(:receipt)
@@ -140,7 +140,7 @@ RSpec.describe ReceiptsController, type: :controller do
         expect(response.code).to eq("200")
       end
     end
-    context "user not signed in" do
+    context "with user not signed in" do
       it "redirects to sign in page" do
         get :edit, id: receipt.id, report_id: report.id
         expect(response).to redirect_to new_session_path
@@ -151,54 +151,82 @@ RSpec.describe ReceiptsController, type: :controller do
 
   describe "#update" do
     context "with valid request" do
-      before do
+      def valid_request
         patch :update, {id: receipt.id,
                         report_id: report.id,
                         receipt: { tax_type: "PST",
                                    image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'receipt.jpg'))}}
       end
-      it "redirects to the receipt page / report show page" do
-        expect(response).to redirect_to(report_path(report))
+      context "with user signed in" do
+        before {login(user)}
+        it "redirects to the receipt page / report show page" do
+          valid_request
+          expect(response).to redirect_to(report_path(report))
+        end
+        it "changes the image of the receipt if it's different" do
+          valid_request
+          expect(receipt.reload.image).to eq(receipt.image)
+        end
+        it "changes the tax_type of the receipt if it's different" do
+          valid_request
+          expect(receipt.reload.tax_type).to eq("PST")
+        end
+        it "sets a notice flash message" do
+          valid_request
+          expect(flash[:notice]).to be
+        end
+        it "has a 302 status code for a good redirect" do
+          valid_request
+          expect(response.code).to eq("302")
+        end
       end
-      it "changes the image of the receipt if it's different" do
-        expect(receipt.reload.image).to eq(receipt.image)
-      end
-      it "changes the tax_type of the receipt if it's different" do
-        expect(receipt.reload.tax_type).to eq("PST")
-      end
-      it "sets a notice flash message" do
-        expect(flash[:notice]).to be
-      end
-      it "has a 302 status code for a good redirect" do
-        expect(response.code).to eq("302")
+      context "with user not signed in" do
+        it "redirects to sign in page" do
+          valid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
     end # end of update with valid params
 
     context "with invalid params" do
-      before do
+      def invalid_request
         patch :update, {id: receipt.id,
                         report_id: report.id,
                         receipt: { tax_type: nil,
                                    image: nil}}
       end
-      it "renders the edit page" do
-        expect(response).to redirect_to(report_path(report))
+      context "with user signed in" do
+        before {login(user)}
+        it "renders the edit page" do
+          invalid_request
+          expect(response).to redirect_to(report_path(report))
+        end
+        it "Missing tax_type doesn't change the database" do
+          invalid_request
+          expect(receipt.reload.tax_type).not_to eq("")
+        end
+        it "Missing image doesn't change the database" do
+          invalid_request
+          expect(receipt.reload.image).to eq(receipt.image)
+        end
+        it "sets an alert flash message" do
+          invalid_request
+          expect(flash[:notice]).to be
+        end
+        it "has a 302 status code for a good redirect" do
+          invalid_request
+          expect(response.code).to eq("302")
+        end
       end
-      it "Missing tax_type doesn't change the database" do
-        expect(receipt.reload.tax_type).not_to eq("")
-      end
-      it "Missing image doesn't change the database" do
-        expect(receipt.reload.image).to eq(receipt.image)
-      end
-      it "sets an alert flash message" do
-        expect(flash[:notice]).to be
-      end
-      it "has a 302 status code for a good redirect" do
-        expect(response.code).to eq("302")
+      context "with user not signed in" do
+        it "redirects to sign in page" do
+          invalid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
     end # end of update with INvalid params
   end # end of  update with valid params
-  
+
   describe "#destroy" do
 
     context "Good delete request" do
