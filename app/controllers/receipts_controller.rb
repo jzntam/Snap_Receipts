@@ -25,7 +25,10 @@ class ReceiptsController < ApplicationController
     @receipt.report = @report
     respond_to do |format|
       if @receipt.save
-        format.html {redirect_to @report, notice: "Receipt Created"}
+        format.html {
+          flash.now[:notice] = "Receipt Created"
+          redirect_to @report
+        }
         format.js {render}
       else
         format.html { 

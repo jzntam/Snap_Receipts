@@ -133,7 +133,7 @@ RSpec.describe ReportsController, type: :controller do
       it "renders the show template" do
         report = FactoryGirl.create(:report)
         get :show, id: report.id
-        expect(response).to render_template(:show)
+        expect(response).to redirect_to(reports_path)
       end
       it "has a 200 status code for a good get response" do
         expect(response.code).to eq("200")
