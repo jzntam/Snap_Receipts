@@ -230,52 +230,66 @@ RSpec.describe ReceiptsController, type: :controller do
   describe "#destroy" do
 
     context "Good delete request" do
-      # let!(:receipt) { create(:receipt, report: report) }
-      before do
-        # delete :destroy, {id: receipt.id, report_id: report.id}
-      end
-
-      it "retrieves the receipt with passed id and stores it in instance var" do
-        # receipt = FactoryGirl.create(:receipt)
-        delete :destroy, id: receipt.id, report_id: report.id
-        expect(assigns(:receipt)).to eq(receipt)
-      end
-      it "deletes the report from the database" do
-        # puts receipt.inspect
-        # expect {
-          delete :destroy, id: receipt.id, report_id: report.id
-        # }.to change{ Receipt.count }.by(-1)
-        expect(Receipt.find_by_id(receipt.id)).to eq(nil)
-      end
-      it "redirect to the show page" do
+      def valid_request
         delete :destroy, {id: receipt.id, report_id: report.id}
-        expect(response).to redirect_to(report_path(report))
       end
-      it "sets a flash message" do
-        delete :destroy, {id: receipt.id, report_id: report.id}
-        expect(flash[:notice]).to be
+      context "with user signed in" do
+        before {login(user)}
+        it "retrieves the receipt with passed id and stores it in instance var" do
+          valid_request
+          expect(assigns(:receipt)).to eq(receipt)
+        end
+        it "deletes the report from the database" do
+          valid_request
+          expect(Receipt.find_by_id(receipt.id)).to eq(nil)
+        end
+        it "redirect to the show page" do
+          valid_request
+          expect(response).to redirect_to(report_path(report))
+        end
+        it "sets a flash message" do
+          valid_request
+          expect(flash[:notice]).to be
+        end
+        it "has a 302 status code for status found for delete" do
+          valid_request
+          expect(response.code).to eq("302")
+        end
       end
-      it "has a 200 status code for a good redirect for delete" do
-        expect(response.code).to eq("200")
+      context "with user not signed in" do
+        it "redirects to sign in page" do
+          valid_request
+          expect(response).to redirect_to new_session_path
+        end
       end
     end # end of destroy with valid params
 
     context "with invalid params" do
-      it "does not delete the receipt from the database" do
-        # delete :destroy, {id: receipt.id, report_id: report.id}
-        # expect { delete :destroy, id: receipt.id }.to_not change { Receipt.count }
-        expect(Receipt.find_by_id(receipt.id)).not_to eq(nil)
+      context "with user signed in" do
+        before {login(user)}
+        it "does not delete the receipt from the database" do
+          # delete :destroy, {id: receipt.id, report_id: report.id}
+          # expect { delete :destroy, id: receipt.id }.to_not change { Receipt.count }
+          delete :destroy, id: receipt.id, report_id: report.id
+          expect(Receipt.find_by_id(receipt.id)).not_to eq(receipt)
+        end
+        it "redirect to the show page" do
+          delete :destroy, id: receipt.id, report_id: report.id
+          expect(response).to redirect_to(report_path(report))
+        end
+        it "sets a flash message" do
+          delete :destroy, id: receipt.id, report_id: report.id
+          expect(flash[:notice]).to be
+        end
+        it "has a 200 status code for a good get response" do
+          expect(response.code).to eq("200")
+        end
       end
-      it "redirect to the show page" do
-        delete :destroy, id: receipt.id, report_id: report.id
-        expect(response).to redirect_to(report_path(report))
-      end
-      it "sets a flash message" do
-        delete :destroy, id: receipt.id, report_id: report.id
-        expect(flash[:notice]).to be
-      end
-      it "has a 200 status code for a good get response" do
-        expect(response.code).to eq("200")
+      context "with user not signed in" do
+        it "redirects to sign in page" do
+          delete :destroy, id: receipt.id, report_id: report.id
+          expect(response).to redirect_to new_session_path
+        end
       end
     end # end of destroy with INvalid params
   end # end of destroy
