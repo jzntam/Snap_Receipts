@@ -35,6 +35,8 @@ gem "animate-rails"
 gem "rspec-rails"
 # gem 'simplecov', :require => false, :group => :test
 
+gem 'remotipart', '~> 1.2'
+
 gem 'hirb'
 gem 'awesome_print'
 gem 'interactive_editor'

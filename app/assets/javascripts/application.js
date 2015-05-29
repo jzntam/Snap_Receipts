@@ -17,4 +17,5 @@
 //= require underscore
 //= require gmaps/google
 //= require jquery-ui
+//= require jquery.remotipart
 //= require_tree .

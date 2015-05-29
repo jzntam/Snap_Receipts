@@ -163,3 +163,15 @@ $(document).ready(function() {
   $(".edit_receipt input#receipt_tax_total").css('width', "190px").css('display', 'inline-block');
   $(".edit_receipt input#receipt_total").addClass('form-control').css('width', "190px")
 }); //end of document ready
+
+$(document).ready(function() {
+  $('form#new_receipt').submit(function(){
+    $('.loading-modal').modal('show');
+  });
+  $( document ).ajaxSuccess(function() {
+    $('.loading-modal').modal('hide');
+  });
+  $('form#new_receipt').bind('ajax:complete', function() {
+    $('.loading-modal').modal('hide');
+  });
+}); //end of document ready

@@ -1,10 +1,28 @@
 $("#receipt-form-toggle .flash-messages").html('');
-$('#new-receipt').val()
+$('#new-receipt').val();
 <% if @receipt.errors.any? %>
   $("#receipt-form-toggle .flash-messages").prepend('<div class="alert alert-danger animated bounceInDown"><h4><%= @receipt.errors.full_messages.join(' & ') %></h4></div>');
 <% else %>
-  // var partyPartial = $("<%= j render partial: '/receipts/receipt', locals: {receipt: @receipt} %>").addClass( "animated fadeInLeftBig" );
-  // $(".receipt-loop-container").prepend(partyPartial)
-  // <% @receipt = Receipt.new %>
-  // $("#receipt-form-toggle .form").html("<%= j render 'receipts/form' %>");
+  var partyPartial = $("<%= j render partial: '/receipts/receipt', locals: {receipt: @receipt} %>").addClass( "animated fadeInLeftBig" );
+  $(".receipt-loop-container").prepend(partyPartial)
+  <% @receipt = Receipt.new %>
+  $("#receipt-form-toggle .form").html("<%= j render 'receipts/form' %>");
+  
+  $(function() {
+    //reload the javascript on the category dropdown
+    $('#receipt_category').selectize({
+      create: true,
+      sortField: 'text'
+    });
+    //reload the loading screen
+    $('form#new_receipt').submit(function(){
+      $('.loading-modal').modal('show');
+    });
+    $( document ).ajaxSuccess(function() {
+      $('.loading-modal').modal('hide');
+    });
+    $('form#new_receipt').bind('ajax:complete', function() {
+      $('.loading-modal').modal('hide');
+    });
+  });
 <% end %>

@@ -75,13 +75,4 @@
     </div>
   </div>
 </div>
-
 <br><br>
-<script type="text/javascript">
-  $('form#new_receipt').submit(function(){
-    $('.loading-modal').modal('show');
-  });
-  $('form#new_receipt').bind('ajax:complete', function() {
-    $('.loading-modal').modal('hide');
-  });
-</script>
